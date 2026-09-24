@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stephan Fritz Hand · Data Analyst &amp; Chef de Projet Data / IA</title>
+
+<meta name="description" content="Stephan Fritz Hand · Data Analyst & Chef de Projet Data / IA. Python, SQL, Power BI, GCP, Azure, LLM, MLOps. Disponible immédiatement." />
+<meta name="author" content="Stephan Fritz Hand" />
+<meta name="theme-color" content="#070A12" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%238B5CF6'/%3E%3Cstop offset='1' stop-color='%2322D3EE'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23070A12'/%3E%3Cpath d='M9 22V10h4.5c2.6 0 4.5 1.6 4.5 4 0 1.6-.9 2.9-2.3 3.5L18.5 22h-3l-2.5-4H12v4H9zm3-6h2c1 0 1.7-.6 1.7-1.6S15 12.8 14 12.8h-2V16z' fill='url(%23g)'/%3E%3C/svg%3E" />
+
+<style>
+/* ========================================================================
+   TOKENS
+   ======================================================================== */
+:root {
+  --bg: #070A12;
+  --bg-2: #0D1220;
+  --bg-3: #11182A;
+  --surface: rgba(255,255,255,0.06);
+  --surface-2: rgba(255,255,255,0.04);
+  --surface-hover: rgba(255,255,255,0.10);
+  --text: #F8FAFC;
+  --text-2: #94A3B8;
+  --text-3: #64748B;
+  --border: rgba(148,163,184,0.18);
+  --border-strong: rgba(148,163,184,0.34);
+
+  --accent: #8B5CF6;
+  --accent-2: #22D3EE;
+  --success: #10B981;
+  --warm: #F59E0B;
+  --pink: #EC4899;
+  --rose: #F43F5E;
+
+  --grad-primary: linear-gradient(135deg, #8B5CF6 0%, #22D3EE 100%);
+  --grad-data: linear-gradient(135deg, #22D3EE 0%, #10B981 100%);
+  --grad-ml: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  --grad-bi: linear-gradient(135deg, #F59E0B 0%, #EC4899 100%);
+
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 50px rgba(139,92,246,0.28), 0 0 100px rgba(34,211,238,0.14);
+  --shadow-cta: 0 8px 24px rgba(139,92,246,0.35);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 22px;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+[data-theme="light"] {
+  --bg: #F7F8FC;
+  --bg-2: #EEF1F8;
+  --bg-3: #E4E9F2;
+  --surface: rgba(15,23,42,0.04);
+  --surface-2: rgba(15,23,42,0.03);
+  --surface-hover: rgba(15,23,42,0.07);
+  --text: #0F172A;
+  --text-2: #475569;
+  --text-3: #64748B;
+  --border: rgba(15,23,42,0.10);
+  --border-strong: rgba(15,23,42,0.22);
+  --shadow-card: 0 1px 0 rgba(255,255,255,0.7) inset, 0 8px 28px rgba(15,23,42,0.08);
+  --shadow-glow: 0 0 50px rgba(139,92,246,0.2), 0 0 100px rgba(34,211,238,0.10);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:6px}
+::selection{background:rgba(139,92,246,0.45);color:#fff}
+
+/* ========================================================================
+   BACKGROUND — AURORA + GRID + NOISE
+   ======================================================================== */
+.bg-fx{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.bg-fx .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.55;will-change:transform}
+.bg-fx .b1{width:540px;height:540px;left:-120px;top:-120px;background:radial-gradient(circle, #8B5CF6 0%, transparent 70%);animation:floatA 22s ease-in-out infinite}
+.bg-fx .b2{width:600px;height:600px;right:-140px;top:10%;background:radial-gradient(circle, #22D3EE 0%, transparent 70%);opacity:0.45;animation:floatB 26s ease-in-out infinite}
+.bg-fx .b3{width:520px;height:520px;left:30%;bottom:-200px;background:radial-gradient(circle, #EC4899 0%, transparent 70%);opacity:0.30;animation:floatC 30s ease-in-out infinite}
+
+/* ---- Ambient data world: faint charts drifting behind the content ---- */
+.bg-charts{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.bg-charts svg{position:absolute;opacity:0.16;will-change:transform}
+[data-theme="light"] .bg-charts svg{opacity:0.10}
+.bg-charts .c-line{width:660px;max-width:60vw;height:auto;left:-60px;bottom:-30px;animation:float-y 18s ease-in-out infinite}
+.bg-charts .c-bars{width:280px;max-width:34vw;height:auto;right:-30px;top:16%;animation:float-y 14s ease-in-out infinite;animation-delay:-4s}
+.bg-charts .c-bars2{width:220px;max-width:26vw;height:auto;left:4%;top:58%;opacity:0.11;animation:float-y 20s ease-in-out infinite;animation-delay:-9s}
+[data-theme="light"] .bg-charts .c-bars2{opacity:0.08}
+.bg-charts .c-scatter{width:240px;max-width:28vw;height:auto;right:6%;bottom:6%;opacity:0.13;animation:float-y 16s ease-in-out infinite;animation-delay:-2s}
+[data-theme="light"] .bg-charts .c-scatter{opacity:0.09}
+@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,120px) scale(1.12)}}
+@keyframes floatB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-100px,80px) scale(1.08)}}
+@keyframes floatC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-80px) scale(1.15)}}
+
+.bg-grid{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(148,163,184,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(148,163,184,0.06) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 85%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 85%);
+}
+[data-theme="light"] .bg-grid{background-image:linear-gradient(rgba(15,23,42,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(15,23,42,0.06) 1px, transparent 1px)}
+
+.bg-noise{
+  position:fixed;inset:-50%;z-index:-1;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;animation:grain 8s steps(8) infinite;
+}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-10%)}20%{transform:translate(-15%,5%)}30%{transform:translate(7%,-15%)}40%{transform:translate(-5%,15%)}50%{transform:translate(-15%,5%)}60%{transform:translate(15%,0)}70%{transform:translate(0,10%)}80%{transform:translate(-10%,5%)}90%{transform:translate(10%,-5%)}}
+
+.spotlight{position:fixed;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, rgba(139,92,246,0.10), transparent 60%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;mix-blend-mode:screen}
+@media (hover:hover) and (pointer:fine){body.has-cursor:hover .spotlight{opacity:1}}
+
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:1000}
+.progress__bar{height:100%;width:0;background:linear-gradient(90deg,#8B5CF6,#22D3EE,#10B981);box-shadow:0 0 16px rgba(139,92,246,0.6);transition:width .08s linear}
+
+/* ========================================================================
+   LAYOUT
+   ======================================================================== */
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px;position:relative}
+@media (min-width:768px){.wrap{padding:0 40px}}
+
+section{padding:110px 0;position:relative}
+@media (max-width:768px){section{padding:72px 0}}
+
+.section-watermark{
+  position:absolute;top:32px;right:24px;
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(6rem, 14vw, 12rem);line-height:0.85;letter-spacing:-0.04em;
+  background:linear-gradient(180deg, rgba(139,92,246,0.10), transparent 70%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  pointer-events:none;user-select:none;z-index:0;
+}
+@media (max-width:768px){.section-watermark{font-size:7rem;top:18px;right:14px;opacity:0.6}}
+
+.eyebrow{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--accent-2);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;
+  position:relative;z-index:1;
+}
+.eyebrow::before{content:'';width:28px;height:1px;background:currentColor}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-0.02em;line-height:1.1;color:var(--text)}
+h2{font-size:clamp(1.95rem, 4.2vw, 2.85rem);margin-bottom:14px;letter-spacing:-0.025em}
+
+.section-head{max-width:740px;margin-bottom:60px;position:relative;z-index:1}
+.section-head p{color:var(--text-2);font-size:1.05rem}
+
+/* ========================================================================
+   BUTTONS
+   ======================================================================== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 18px;border-radius:12px;
+  font-size:13.5px;font-weight:500;font-family:var(--font-body);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .2s, border-color .2s;
+  white-space:nowrap;position:relative;will-change:transform;
+}
+.btn svg{width:16px;height:16px;flex-shrink:0}
+.btn-primary{background:var(--grad-primary);color:#0A0F1F;font-weight:600;box-shadow:var(--shadow-cta)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(139,92,246,0.5)}
+.btn-primary::after{content:'';position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.3), transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+.btn-primary:hover::after{opacity:1}
+.btn-ghost{background:var(--surface);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:var(--surface-hover);border-color:var(--border-strong);transform:translateY(-2px)}
+.btn-icon{width:38px;height:38px;border-radius:11px;padding:0;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);transition:all .2s var(--ease)}
+.btn-icon:hover{background:var(--surface-hover);transform:rotate(15deg)}
+.btn-icon svg{width:16px;height:16px}
+
+/* ========================================================================
+   NAV
+   ======================================================================== */
+.nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:500;width:calc(100% - 28px);max-width:1180px;
+  display:flex;align-items:center;justify-content:space-between;padding:10px 16px;
+  background:rgba(13,18,32,0.6);backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid var(--border);border-radius:18px;
+  transition:background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+[data-theme="light"] .nav{background:rgba(248,250,252,0.78)}
+.nav.scrolled{background:rgba(7,10,18,0.85);border-color:var(--border-strong);box-shadow:0 10px 40px rgba(0,0,0,0.35)}
+[data-theme="light"] .nav.scrolled{background:rgba(248,250,252,0.94);box-shadow:0 10px 30px rgba(15,23,42,0.08)}
+.nav__brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:0.95rem;padding:0 8px}
+.nav__logo{width:32px;height:32px;border-radius:9px;background:var(--grad-primary);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;color:#070A12;font-size:13px;box-shadow:0 4px 16px rgba(139,92,246,0.45);position:relative}
+.nav__logo::after{content:'';position:absolute;inset:-2px;border-radius:11px;background:var(--grad-primary);filter:blur(8px);opacity:0.5;z-index:-1}
+.nav__links{display:none;gap:4px;align-items:center}
+@media (min-width:1024px){.nav__links{display:flex}}
+.nav__links a{font-size:13.5px;color:var(--text-2);padding:8px 12px;border-radius:10px;transition:color .2s, background .2s;position:relative}
+.nav__links a:hover{color:var(--text);background:var(--surface)}
+.nav__links a.active{color:var(--text)}
+.nav__links a.active::after{content:'';position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--grad-primary);border-radius:2px}
+.nav__right{display:flex;align-items:center;gap:10px}
+.badge-status{display:none;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.32);color:#34D399;font-size:12px;font-weight:500;font-family:var(--font-mono)}
+@media (min-width:900px){.badge-status{display:inline-flex}}
+.badge-status .dot{width:7px;height:7px;border-radius:50%;background:#10B981;box-shadow:0 0 0 0 rgba(16,185,129,0.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,0.6)}70%{box-shadow:0 0 0 9px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.lang-switch{display:flex;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:3px;gap:2px}
+.lang-switch button{padding:7px 11px;border-radius:8px;font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.03em;color:var(--text-2);transition:background .2s, color .2s}
+.lang-switch button[aria-current="true"]{background:var(--grad-primary);color:#0A0F1F}
+.lang-switch button:not([aria-current="true"]):hover{color:var(--text);background:var(--surface-hover)}
+.lang-switch--mobile{width:100%;justify-content:stretch;margin-top:8px;padding:4px}
+.lang-switch--mobile button{flex:1}
+.nav__toggle{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--surface);border:1px solid var(--border)}
+@media (min-width:1024px){.nav__toggle{display:none}}
+.nav__menu{position:fixed;top:80px;left:14px;right:14px;z-index:499;background:rgba(13,18,32,0.96);backdrop-filter:blur(22px);border:1px solid var(--border);border-radius:18px;padding:18px;display:none;flex-direction:column;gap:4px}
+[data-theme="light"] .nav__menu{background:rgba(248,250,252,0.97)}
+.nav__menu.open{display:flex;animation:slideDown .25s var(--ease)}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.nav__menu a{padding:14px 16px;border-radius:10px;color:var(--text-2);font-size:14.5px;font-weight:500}
+.nav__menu a:hover{background:var(--surface);color:var(--text)}
+
+/* ========================================================================
+   HERO — DATA DASHBOARD
+   ======================================================================== */
+.hero{min-height:100vh;padding:140px 0 80px;display:flex;align-items:center;position:relative}
+.hero-grid{display:grid;gap:48px;grid-template-columns:1fr;align-items:center}
+@media (min-width:1024px){.hero-grid{grid-template-columns:1.05fr 1fr;gap:56px}}
+
+.hero__intro-chip{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--border);
+  font-family:var(--font-mono);font-size:12px;color:var(--text-2);margin-bottom:26px;
+  backdrop-filter:blur(8px);
+}
+.hero__intro-chip .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 12px var(--success);animation:pulse 2s infinite}
+
+.hero h1{
+  font-size:clamp(2.4rem, 5.6vw, 4.6rem);
+  margin-bottom:22px;letter-spacing:-0.035em;font-weight:600;
+}
+.hero h1 .grad{
+  background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  background-size:200% 100%;animation:gradShift 6s ease infinite;
+}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.hero__rotator{
+  font-family:var(--font-mono);font-size:14px;color:var(--text-2);
+  margin-bottom:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+}
+.hero__rotator .label{color:var(--text-3)}
+.hero__rotator .roles{display:inline-flex;align-items:center;gap:10px;color:var(--accent-2);font-weight:500}
+.hero__rotator .role-flip{display:inline-block;min-width:200px;color:var(--accent-2);transition:opacity .35s, transform .35s var(--ease)}
+@media (max-width:520px){.hero__rotator .role-flip{min-width:0}}
+
+.hero__lede{font-size:1.1rem;color:var(--text-2);max-width:560px;margin-bottom:18px;line-height:1.65}
+.hero__sub{font-size:0.96rem;color:var(--text-3);max-width:560px;margin-bottom:30px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
+
+/* Code block hero "profile.py" */
+.code-card{
+  background:linear-gradient(180deg, rgba(13,18,32,0.7), rgba(7,10,18,0.7));
+  border:1px solid var(--border);border-radius:14px;
+  font-family:var(--font-mono);font-size:12.5px;line-height:1.75;
+  color:var(--text-2);position:relative;overflow:hidden;
+  backdrop-filter:blur(10px);
+}
+.code-card__head{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+}
+.code-card__head .dots{display:flex;gap:6px}
+.code-card__head .dots span{width:10px;height:10px;border-radius:50%}
+.code-card__head .dots span:nth-child(1){background:#F43F5E}
+.code-card__head .dots span:nth-child(2){background:#F59E0B}
+.code-card__head .dots span:nth-child(3){background:#10B981}
+.code-card__head .name{font-size:11.5px;color:var(--text-3);margin-left:8px}
+.code-card__body{padding:14px 16px;white-space:pre-wrap}
+.tk-kw{color:#C4B5FD}
+.tk-fn{color:#22D3EE}
+.tk-str{color:#FBBF24}
+.tk-com{color:var(--text-3);font-style:italic}
+.tk-num{color:#10B981}
+.tk-key{color:#F472B6}
+
+/* ========================================================================
+   HERO DASHBOARD
+   ======================================================================== */
+.dashboard{
+  position:relative;
+  background:linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:22px;
+  box-shadow:var(--shadow-card), var(--shadow-glow);
+  overflow:hidden;
+}
+.dashboard::before{
+  content:'';position:absolute;inset:0;border-radius:var(--radius-lg);padding:1px;
+  background:linear-gradient(135deg, rgba(139,92,246,0.6), rgba(34,211,238,0.4), transparent 60%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.dashboard::after{
+  content:'';position:absolute;left:-100%;top:0;bottom:0;width:120px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  animation:scan 6s ease-in-out infinite;pointer-events:none;
+}
+@keyframes scan{0%{left:-30%}60%{left:130%}100%{left:130%}}
+
+.dashboard__head{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--border)}
+.dashboard__title{font-family:var(--font-mono);font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:8px}
+.dashboard__title .led{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 10px var(--success);animation:pulse 2s infinite}
+.dashboard__tag{font-family:var(--font-mono);font-size:11px;color:var(--accent-2);padding:3px 8px;border-radius:6px;background:rgba(34,211,238,0.10);border:1px solid rgba(34,211,238,0.25)}
+
+.dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+@media (max-width:520px){.dash-kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{padding:10px 12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);min-height:74px}
+.kpi__lab{font-family:var(--font-mono);font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px}
+.kpi__val{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.1}
+.kpi__val.acc-1{background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.kpi__val.acc-2{background:var(--grad-data);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.kpi__val.acc-3{background:var(--grad-bi);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.kpi__sub{font-family:var(--font-mono);font-size:10px;color:var(--text-3);margin-top:3px}
+
+.dash-row{display:grid;grid-template-columns:1.5fr 1fr;gap:10px;margin-bottom:14px}
+@media (max-width:520px){.dash-row{grid-template-columns:1fr}}
+.dash-panel{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;overflow:hidden}
+.dash-panel__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dash-panel__title{font-family:var(--font-mono);font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.1em}
+.dash-panel__badge{font-family:var(--font-mono);font-size:10px;color:#34D399;padding:2px 7px;border-radius:5px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.28)}
+
+/* Spark chart */
+.sparkline{height:90px;width:100%}
+.spark-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9.5px;color:var(--text-3);margin-top:6px}
+
+/* Donut chart */
+.donut-wrap{display:flex;align-items:center;gap:12px}
+.donut{position:relative;width:88px;height:88px;flex-shrink:0}
+.donut svg{transform:rotate(-90deg)}
+.donut__center{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--text)}
+.donut-legend{font-family:var(--font-mono);font-size:10.5px;color:var(--text-2);display:flex;flex-direction:column;gap:5px}
+.donut-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+/* Stack bars */
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-2)}
+.bar-row__lab{width:88px;flex-shrink:0;color:var(--text-2)}
+.bar-row__track{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden;position:relative}
+.bar-row__fill{height:100%;border-radius:3px;background:var(--grad-primary);width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.bar-row__fill.b-2{background:var(--grad-data)}
+.bar-row__fill.b-3{background:var(--grad-bi)}
+.bar-row__fill.b-4{background:linear-gradient(135deg, #F59E0B, #10B981)}
+.bar-row__val{width:36px;text-align:right;color:var(--text-3);font-size:10.5px}
+
+/* Status pills */
+.dash-status{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-family:var(--font-mono);font-size:10px;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+.pill-ok{background:rgba(16,185,129,0.14);color:#34D399;border:1px solid rgba(16,185,129,0.32)}
+.pill-go{background:rgba(34,211,238,0.14);color:#67E8F9;border:1px solid rgba(34,211,238,0.32)}
+.pill-warm{background:rgba(245,158,11,0.14);color:#FBBF24;border:1px solid rgba(245,158,11,0.32)}
+.pill-vio{background:rgba(139,92,246,0.16);color:#C4B5FD;border:1px solid rgba(139,92,246,0.32)}
+.pill-rose{background:rgba(244,63,94,0.14);color:#FDA4AF;border:1px solid rgba(244,63,94,0.30)}
+
+/* ========================================================================
+   MARQUEE
+   ======================================================================== */
+.marquee{position:relative;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:linear-gradient(180deg, rgba(13,18,32,0.4), rgba(7,10,18,0.4))}
+[data-theme="light"] .marquee{background:linear-gradient(180deg, rgba(238,241,248,0.5), rgba(247,248,252,0.5))}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg, var(--bg), transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg, var(--bg), transparent)}
+.marquee__track{display:flex;gap:48px;align-items:center;animation:scrollX 45s linear infinite;white-space:nowrap;width:max-content}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+.marquee__item{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:14px;color:var(--text-2);letter-spacing:0.06em}
+.marquee__item .dot{width:5px;height:5px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 8px var(--accent-2)}
+
+/* ========================================================================
+   PIPELINE SECTION
+   ======================================================================== */
+.pipeline-section{padding:80px 0;border-bottom:1px solid var(--border)}
+.pipeline-head{text-align:center;margin-bottom:40px}
+.pipeline-head .eyebrow{justify-content:center}
+.pipeline-head h2{font-size:clamp(1.6rem, 3.4vw, 2.2rem)}
+.pipeline-head p{color:var(--text-2);max-width:620px;margin:10px auto 0;font-size:0.98rem}
+
+.pipeline{
+  position:relative;
+  display:grid;gap:14px;
+  grid-template-columns:repeat(5, 1fr);
+}
+@media (max-width:1024px){.pipeline{grid-template-columns:repeat(2, 1fr)}}
+@media (max-width:520px){.pipeline{grid-template-columns:1fr}}
+
+.pipe-node{
+  position:relative;
+  padding:18px 16px;border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  text-align:center;
+}
+.pipe-node__ico{
+  width:42px;height:42px;border-radius:11px;margin:0 auto 12px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg, rgba(139,92,246,0.22), rgba(34,211,238,0.16));
+  border:1px solid rgba(139,92,246,0.3);color:#C4B5FD;
+}
+.pipe-node__ico svg{width:20px;height:20px}
+.pipe-node h4{font-family:var(--font-display);font-size:0.95rem;font-weight:600;margin-bottom:6px}
+.pipe-node p{font-size:0.78rem;color:var(--text-2);line-height:1.5;font-family:var(--font-mono);letter-spacing:0.01em}
+
+/* Connector arrows (desktop) */
+.pipe-node:not(:last-child)::after{
+  content:'';position:absolute;
+  top:50%;right:-14px;width:14px;height:2px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform:translateY(-50%);
+}
+.pipe-node:not(:last-child)::before{
+  content:'';position:absolute;
+  top:50%;right:-16px;width:0;height:0;
+  border-left:7px solid var(--accent-2);
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+  transform:translateY(-50%);
+  filter:drop-shadow(0 0 6px rgba(34,211,238,0.5));
+}
+@media (max-width:1024px){
+  .pipe-node:not(:last-child)::after,
+  .pipe-node:not(:last-child)::before{display:none}
+}
+
+/* Pipeline particles flow */
+.pipe-node__particles{
+  position:absolute;left:0;right:0;bottom:6px;height:3px;
+  background:linear-gradient(90deg, transparent, var(--accent-2), transparent);
+  background-size:200px 100%;background-repeat:repeat-x;
+  opacity:0.4;animation:flow 4s linear infinite;
+}
+@keyframes flow{from{background-position:0 0}to{background-position:200px 0}}
+
+/* ========================================================================
+   CREDIBILITY STRIP
+   ======================================================================== */
+.cred-strip{padding:48px 0}
+.cred-strip__inner{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
+.cred-chip{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:13px;color:var(--text-2);transition:all .25s var(--ease);backdrop-filter:blur(6px)}
+.cred-chip:hover{background:var(--surface-hover);color:var(--text);border-color:var(--border-strong);transform:translateY(-2px)}
+.cred-chip svg{width:14px;height:14px;color:var(--accent-2)}
+
+/* ========================================================================
+   GLOW CARDS
+   ======================================================================== */
+.glow-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);transition:background .25s, border-color .25s, transform .35s var(--ease);overflow:hidden}
+.glow-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(139,92,246,0.18), transparent 40%);opacity:0;transition:opacity .3s;pointer-events:none}
+.glow-card:hover::before{opacity:1}
+.glow-card:hover{background:var(--surface-hover);border-color:rgba(139,92,246,0.45);transform:translateY(-4px)}
+
+/* ========================================================================
+   PROFIL — with SQL block
+   ======================================================================== */
+.sql-card{
+  margin-bottom:36px;
+  background:linear-gradient(180deg, rgba(13,18,32,0.7), rgba(7,10,18,0.7));
+  border:1px solid var(--border);border-radius:14px;
+  font-family:var(--font-mono);font-size:13px;line-height:1.75;
+  color:var(--text-2);position:relative;overflow:hidden;
+  backdrop-filter:blur(8px);
+  max-width:760px;
+}
+.sql-card__head{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)}
+.sql-card__head .name{font-size:11.5px;color:var(--text-3)}
+.sql-card__head .badge{margin-left:auto;font-size:10px;color:#34D399;padding:2px 7px;border-radius:5px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.28);text-transform:uppercase;letter-spacing:0.08em}
+.sql-card__body{padding:16px 18px;white-space:pre-wrap;font-size:12.5px}
+.sql-kw{color:#C4B5FD;font-weight:500}
+.sql-fn{color:#22D3EE}
+.sql-str{color:#FBBF24}
+.sql-com{color:var(--text-3);font-style:italic}
+.sql-arrow{color:#10B981;font-weight:600}
+
+.identity{display:flex;gap:26px;align-items:center;margin-bottom:38px;position:relative;z-index:1}
+@media (max-width:640px){.identity{flex-direction:column;align-items:flex-start;text-align:left}}
+.identity__photo{position:relative;width:136px;height:136px;flex-shrink:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card),var(--shadow-glow)}
+.identity__photo::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:2px;background:var(--grad-primary);-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2}
+.identity__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.identity__text h3{font-size:1.35rem;margin-bottom:6px}
+.identity__text .role{font-family:var(--font-mono);font-size:12.5px;color:var(--accent-2);margin-bottom:12px;letter-spacing:.02em}
+.identity__badges{display:flex;flex-wrap:wrap;gap:8px}
+.identity--hero{margin-bottom:22px}
+.identity--hero .identity__photo{width:84px;height:84px;border-radius:14px}
+.identity--hero .identity__text h3{font-size:1.05rem;margin-bottom:3px}
+.identity--hero .identity__text .role{font-size:11.5px;margin-bottom:0}
+
+.profil__grid{display:grid;gap:32px;grid-template-columns:1fr;align-items:start;position:relative;z-index:1}
+@media (min-width:900px){.profil__grid{grid-template-columns:1.05fr 1fr;gap:60px}}
+.profil__text p{color:var(--text-2);margin-bottom:18px;font-size:1.02rem;line-height:1.75}
+.profil__text p strong{color:var(--text);font-weight:600}
+
+.position-cards{display:grid;gap:14px}
+.position-card{padding:22px}
+.position-card__head{display:flex;align-items:center;gap:12px;margin-bottom:8px;position:relative;z-index:1}
+.position-card__icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg, rgba(139,92,246,0.22), rgba(34,211,238,0.16));border:1px solid var(--border);color:var(--accent-2);transition:transform .3s var(--ease)}
+.position-card:hover .position-card__icon{transform:scale(1.1) rotate(-5deg)}
+.position-card__icon svg{width:18px;height:18px}
+.position-card h3{font-size:1.08rem;font-family:var(--font-display);font-weight:600}
+.position-card p{color:var(--text-2);font-size:0.93rem;line-height:1.6;position:relative;z-index:1}
+
+/* ========================================================================
+   EXPERTISE — with radar
+   ======================================================================== */
+.expertise-layout{display:grid;gap:36px;grid-template-columns:1fr;position:relative;z-index:1}
+@media (min-width:1024px){.expertise-layout{grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}}
+
+.radar-wrap{
+  position:relative;padding:24px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;
+}
+.radar-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%, rgba(139,92,246,0.12), transparent 70%);
+  pointer-events:none;
+}
+.radar-wrap h4{font-family:var(--font-mono);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.14em;text-align:center;margin-bottom:14px}
+.radar-svg{width:100%;height:auto;max-width:380px;margin:0 auto;display:block}
+.radar-legend{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
+.radar-legend span{font-family:var(--font-mono);font-size:10.5px;padding:3px 8px;border-radius:5px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.28);color:#C4B5FD}
+
+.expertise-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr;position:relative;z-index:1}
+@media (max-width:640px){.expertise-grid{grid-template-columns:1fr}}
+
+.exp-card{padding:24px;position:relative}
+.exp-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(139,92,246,0.6), transparent);opacity:0;transition:opacity .3s}
+.exp-card:hover::after{opacity:1}
+.exp-card__icon{width:46px;height:46px;border-radius:12px;margin-bottom:16px;display:grid;place-items:center;background:linear-gradient(135deg, rgba(139,92,246,0.24), rgba(34,211,238,0.18));border:1px solid rgba(139,92,246,0.35);color:#C4B5FD;position:relative;z-index:1;transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
+.exp-card:hover .exp-card__icon{transform:translateY(-3px) rotate(-4deg);box-shadow:0 8px 24px rgba(139,92,246,0.3)}
+.exp-card__icon svg{width:20px;height:20px}
+.exp-card h3{font-size:1.05rem;margin-bottom:8px;position:relative;z-index:1}
+.exp-card p{color:var(--text-2);font-size:0.9rem;line-height:1.55;margin-bottom:14px;position:relative;z-index:1}
+.exp-card__tags{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+
+.tag-chip{font-family:var(--font-mono);font-size:11px;padding:4px 9px;border-radius:6px;background:var(--surface);border:1px solid var(--border);color:var(--text-2);transition:all .2s}
+.tag-chip:hover{background:var(--surface-hover);color:var(--text);border-color:var(--border-strong)}
+
+/* ========================================================================
+   TIMELINE — with type badges + stack bar
+   ======================================================================== */
+.timeline{position:relative;padding-left:28px;z-index:1}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg, var(--accent), var(--accent-2) 40%, var(--success) 80%, transparent);opacity:0.5}
+.tl-item{position:relative;margin-bottom:40px}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-28px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 4px rgba(139,92,246,0.12), 0 0 12px rgba(139,92,246,0.5);transition:transform .3s, box-shadow .3s}
+.tl-item:hover::before{transform:scale(1.3);box-shadow:0 0 0 6px rgba(139,92,246,0.15), 0 0 18px rgba(139,92,246,0.7)}
+.tl-card{padding:26px}
+.tl-card__top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.tl-type{
+  font-family:var(--font-mono);font-size:10px;font-weight:600;
+  padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:0.1em;
+}
+.tl-type-alt{background:rgba(139,92,246,0.18);color:#C4B5FD;border:1px solid rgba(139,92,246,0.36)}
+.tl-type-stage{background:rgba(34,211,238,0.14);color:#67E8F9;border:1px solid rgba(34,211,238,0.32)}
+.tl-type-free{background:rgba(245,158,11,0.14);color:#FBBF24;border:1px solid rgba(245,158,11,0.32)}
+.tl-type-teach{background:rgba(16,185,129,0.14);color:#34D399;border:1px solid rgba(16,185,129,0.32)}
+.tl-card__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;position:relative;z-index:1}
+.tl-card h3{font-size:1.08rem;font-family:var(--font-display);font-weight:600}
+.tl-card h3 .company{color:var(--accent-2);font-weight:500}
+.tl-card__meta{font-family:var(--font-mono);font-size:12px;color:var(--text-3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tl-card__sub{font-size:0.94rem;color:var(--text-2);margin-bottom:14px;font-style:italic;position:relative;z-index:1}
+.tl-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;position:relative;z-index:1}
+.tl-card ul li{position:relative;padding-left:18px;color:var(--text-2);font-size:0.93rem;line-height:1.6}
+.tl-card ul li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:2px;background:var(--accent-2);box-shadow:0 0 6px rgba(34,211,238,0.6)}
+.tl-card ul li b{color:var(--text);font-weight:600}
+
+.tl-card__stack-grid{
+  display:grid;gap:8px;grid-template-columns:1fr;
+  padding-top:14px;border-top:1px solid var(--border);position:relative;z-index:1;
+}
+.tl-stack-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11.5px;color:var(--text-3)}
+.tl-stack-row b{color:var(--text-2);font-weight:500;margin-right:4px}
+
+/* ========================================================================
+   PROJECTS — Jupyter notebook cells
+   ======================================================================== */
+.case-grid{display:grid;gap:20px;grid-template-columns:1fr;position:relative;z-index:1}
+@media (min-width:768px){.case-grid{grid-template-columns:1fr 1fr}}
+
+.cell{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg, rgba(13,18,32,0.7), rgba(7,10,18,0.6));
+  border:1px solid var(--border);border-radius:14px;
+  font-family:var(--font-mono);font-size:13px;
+  transition:transform .35s var(--ease), border-color .25s;
+}
+.cell:hover{transform:translateY(-4px);border-color:rgba(139,92,246,0.45)}
+
+.cell__in{
+  display:flex;gap:12px;padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+}
+.cell__num{
+  flex-shrink:0;font-family:var(--font-mono);font-size:11px;color:var(--accent);font-weight:600;
+  white-space:nowrap;
+}
+.cell__code{flex:1;font-size:12.5px;line-height:1.7;color:var(--text-2);overflow-x:auto}
+
+.cell__out{padding:18px}
+.cell__out-label{font-family:var(--font-mono);font-size:11px;color:var(--accent-2);margin-bottom:10px;letter-spacing:0.06em}
+.cell__visual{
+  position:relative;height:170px;border-radius:10px;overflow:hidden;
+  margin-bottom:14px;border:1px solid var(--border);
+  background:linear-gradient(180deg, #0D1220, #11182A);
+}
+.cell__visual svg{position:absolute;inset:0;width:100%;height:100%}
+
+.cell__body{padding:0 18px 18px}
+.cell h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:8px;color:var(--text);font-weight:600}
+.cell__cat{font-family:var(--font-mono);font-size:10.5px;color:var(--accent-2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px}
+.cell__desc{font-family:var(--font-body);color:var(--text-2);font-size:0.93rem;line-height:1.6;margin-bottom:12px}
+.cell__tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.cell__result{font-size:0.85rem;color:var(--success);font-family:var(--font-mono);display:flex;align-items:center;gap:8px;font-weight:500}
+.cell__result svg{width:14px;height:14px;flex-shrink:0}
+
+/* ========================================================================
+   STACK — with proficiency-feel grid
+   ======================================================================== */
+.stack-grid{display:grid;gap:16px;grid-template-columns:1fr;position:relative;z-index:1}
+@media (min-width:640px){.stack-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.stack-grid{grid-template-columns:repeat(3,1fr)}}
+.stack-card{padding:24px}
+.stack-card__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;position:relative;z-index:1}
+.stack-card__left{display:flex;align-items:center;gap:12px}
+.stack-card__head .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--accent-2);background:rgba(34,211,238,0.10);border:1px solid rgba(34,211,238,0.28);transition:transform .3s var(--ease)}
+.stack-card:hover .stack-card__head .ico{transform:rotate(-8deg) scale(1.08)}
+.stack-card__head .ico svg{width:16px;height:16px}
+.stack-card h3{font-size:1rem;font-family:var(--font-display);font-weight:600}
+.stack-card__count{font-family:var(--font-mono);font-size:10.5px;color:var(--text-3);padding:3px 8px;border-radius:5px;background:var(--surface-2);border:1px solid var(--border)}
+.stack-tags{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+
+/* ========================================================================
+   FORMATION
+   ======================================================================== */
+.edu-grid{display:grid;gap:14px;grid-template-columns:1fr;position:relative;z-index:1}
+@media (min-width:768px){.edu-grid{grid-template-columns:1fr 1fr}}
+.edu-card{padding:24px}
+.edu-card__head{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap;position:relative;z-index:1}
+.edu-card__date{font-family:var(--font-mono);font-size:11.5px;color:var(--accent-2);white-space:nowrap;padding:2px 8px;border-radius:6px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.22)}
+.edu-card h3{font-size:1.02rem;margin-bottom:6px;max-width:78%}
+.edu-card__school{color:var(--text);font-size:0.94rem;margin-bottom:6px;font-weight:500;position:relative;z-index:1}
+.edu-card__loc{font-family:var(--font-mono);font-size:11.5px;color:var(--text-3);margin-bottom:12px;position:relative;z-index:1}
+.edu-card__topics{color:var(--text-2);font-size:0.89rem;line-height:1.55;position:relative;z-index:1}
+
+/* ========================================================================
+   CERTS & LANGUES
+   ======================================================================== */
+.dual-grid{display:grid;gap:20px;grid-template-columns:1fr;position:relative;z-index:1}
+@media (min-width:900px){.dual-grid{grid-template-columns:1.5fr 1fr}}
+.panel{padding:30px}
+.panel h3{font-size:1.15rem;margin-bottom:20px;display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.panel h3 svg{width:18px;height:18px;color:var(--accent-2)}
+.cert-list{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+.cert-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:12.5px;color:var(--text-2);transition:all .2s var(--ease)}
+.cert-pill:hover{background:var(--surface-hover);color:var(--text);border-color:var(--border-strong);transform:translateY(-2px)}
+.cert-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 6px var(--accent-2)}
+.lang-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
+.lang-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid var(--border);transition:all .2s}
+.lang-row:hover{background:var(--surface-hover);border-color:var(--border-strong)}
+.lang-row__name{font-weight:500;font-size:0.98rem;display:flex;align-items:center;gap:10px}
+.lang-row__name .flag{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--surface);font-size:11px;font-family:var(--font-mono);font-weight:600;border:1px solid var(--border)}
+.lang-row__level{font-family:var(--font-mono);font-size:11.5px;color:var(--accent-2);padding:4px 10px;border-radius:6px;background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.28)}
+
+/* ========================================================================
+   CONTACT
+   ======================================================================== */
+.contact__inner{text-align:center;max-width:820px;margin:0 auto;padding:64px 32px;border-radius:24px;background:radial-gradient(circle at 25% 0%, rgba(139,92,246,0.22), transparent 55%),radial-gradient(circle at 80% 100%, rgba(34,211,238,0.18), transparent 55%),var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;backdrop-filter:blur(10px)}
+.contact__inner::before{content:'';position:absolute;inset:0;border-radius:24px;padding:1px;background:linear-gradient(135deg, rgba(139,92,246,0.5), transparent 35%, rgba(34,211,238,0.5));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.contact h2{margin-bottom:18px}
+.contact__lede{color:var(--text-2);font-size:1.05rem;max-width:600px;margin:0 auto 32px}
+.contact__info{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:32px}
+.contact__info a, .contact__info span{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:13.5px;color:var(--text-2);transition:all .2s}
+.contact__info a:hover{background:var(--surface-hover);color:var(--text);border-color:var(--border-strong);transform:translateY(-2px)}
+.contact__info svg{width:15px;height:15px;color:var(--accent-2)}
+.contact__cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* ========================================================================
+   FOOTER
+   ======================================================================== */
+footer{padding:36px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-3);font-size:13px;background:rgba(7,10,18,0.5);backdrop-filter:blur(6px)}
+[data-theme="light"] footer{background:rgba(238,241,248,0.5)}
+footer .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
+footer .footer-socials{display:flex;gap:8px}
+footer .footer-socials a{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);color:var(--text-2);transition:all .2s}
+footer .footer-socials a:hover{color:var(--text);background:var(--surface-hover);border-color:var(--border-strong);transform:translateY(-2px)}
+footer .footer-socials svg{width:15px;height:15px}
+
+/* ========================================================================
+   REVEAL
+   ======================================================================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease), transform .85s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-stagger > *{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal-stagger.in > *{opacity:1;transform:translateY(0)}
+.reveal-stagger.in > *:nth-child(1){transition-delay:0ms}
+.reveal-stagger.in > *:nth-child(2){transition-delay:80ms}
+.reveal-stagger.in > *:nth-child(3){transition-delay:160ms}
+.reveal-stagger.in > *:nth-child(4){transition-delay:240ms}
+.reveal-stagger.in > *:nth-child(5){transition-delay:320ms}
+.reveal-stagger.in > *:nth-child(6){transition-delay:400ms}
+
+/* Float */
+@keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion: no-preference){.dashboard{animation:float-y 10s ease-in-out infinite}}
+
+.skip{position:absolute;left:-9999px;top:8px;padding:8px 14px;background:var(--accent);color:#0B0F1A;border-radius:8px;font-weight:600;z-index:9999}
+.skip:focus{left:14px}
+</style>
+</head>
+<body>
+
+<a href="#profil" class="skip" data-en="Skip to content">Aller au contenu</a>
+
+<div class="bg-fx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="bg-charts" aria-hidden="true">
+  <svg class="c-line" viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="bgLineFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/></linearGradient></defs>
+    <g stroke="rgba(148,163,184,0.5)" stroke-width="1"><line x1="0" y1="70" x2="620" y2="70"/><line x1="0" y1="150" x2="620" y2="150"/><line x1="0" y1="230" x2="620" y2="230"/><line x1="0" y1="310" x2="620" y2="310"/></g>
+    <path d="M0 270 Q90 250 150 215 T300 165 T450 110 T620 55 L620 320 L0 320 Z" fill="url(#bgLineFill)"/>
+    <path d="M0 270 Q90 250 150 215 T300 165 T450 110 T620 55" stroke="#22D3EE" stroke-width="2.5" fill="none"/>
+    <g fill="#8B5CF6"><circle cx="150" cy="215" r="5"/><circle cx="300" cy="165" r="5"/><circle cx="450" cy="110" r="5"/><circle cx="620" cy="55" r="5"/></g>
+  </svg>
+  <svg class="c-bars" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="180" x2="260" y2="180" stroke="rgba(148,163,184,0.5)" stroke-width="1"/>
+    <g fill="#8B5CF6"><rect x="8" y="128" width="26" height="52" rx="3"/><rect x="48" y="96" width="26" height="84" rx="3"/><rect x="88" y="66" width="26" height="114" rx="3"/><rect x="128" y="88" width="26" height="92" rx="3"/><rect x="168" y="40" width="26" height="140" rx="3"/><rect x="208" y="18" width="26" height="162" rx="3"/></g>
+  </svg>
+  <svg class="c-bars2" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="140" x2="220" y2="140" stroke="rgba(148,163,184,0.5)" stroke-width="1"/>
+    <g fill="#F59E0B"><rect x="6" y="90" width="22" height="50" rx="3"/><rect x="42" y="60" width="22" height="80" rx="3"/><rect x="78" y="100" width="22" height="40" rx="3"/><rect x="114" y="40" width="22" height="100" rx="3"/><rect x="150" y="72" width="22" height="68" rx="3"/><rect x="186" y="20" width="22" height="120" rx="3"/></g>
+  </svg>
+  <svg class="c-scatter" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="rgba(148,163,184,0.4)" stroke-width="1" fill="none"><line x1="0" y1="0" x2="0" y2="180"/><line x1="0" y1="180" x2="240" y2="180"/></g>
+    <path d="M0 150 L40 130 L80 140 L120 90 L160 100 L200 50 L240 60" stroke="#10B981" stroke-width="2" fill="none"/>
+    <g fill="#22D3EE"><circle cx="20" cy="120" r="4"/><circle cx="60" cy="70" r="4"/><circle cx="100" cy="110" r="4"/><circle cx="140" cy="55" r="4"/><circle cx="180" cy="85" r="4"/><circle cx="220" cy="35" r="4"/></g>
+  </svg>
+</div>
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav" aria-label="Navigation principale">
+  <a href="#top" class="nav__brand" aria-label="Accueil">
+    <span class="nav__logo">FH</span><span>Fritz Hand</span>
+  </a>
+  <div class="nav__links">
+    <a href="#profil" data-en="Profile">Profil</a>
+    <a href="#expertise" data-en="Expertise">Expertise</a>
+    <a href="#experience" data-en="Experience">Expérience</a>
+    <a href="#projets" data-en="Projects">Projets</a>
+    <a href="#stack" data-en="Stack">Stack</a>
+    <a href="#formation" data-en="Education">Formation</a>
+    <a href="#contact" data-en="Contact">Contact</a>
+  </div>
+  <div class="nav__right">
+    <span class="badge-status" data-en='<span class="dot"></span>Available immediately'><span class="dot"></span>Disponible immédiatement</span>
+    <div class="lang-switch" role="group" aria-label="Langue / Language">
+      <button type="button" id="langFr" aria-current="true">FR</button>
+      <button type="button" id="langEn" aria-current="false">EN</button>
+    </div>
+    <button class="btn-icon" id="themeToggle" aria-label="Changer de thème" title="Changer de thème">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="./Hand fritz_stephan_CV.pdf" class="btn btn-primary" data-magnetic download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      CV
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="nav__menu" id="navMenu" role="menu">
+  <a href="#profil" data-en="Profile">Profil</a>
+  <a href="#expertise" data-en="Expertise">Expertise</a>
+  <a href="#experience" data-en="Experience">Expérience</a>
+  <a href="#projets" data-en="Projects">Projets</a>
+  <a href="#stack" data-en="Stack">Stack</a>
+  <a href="#formation" data-en="Education">Formation</a>
+  <a href="#contact" data-en="Contact">Contact</a>
+  <div class="lang-switch lang-switch--mobile" role="group" aria-label="Langue / Language">
+    <button type="button" id="langFrMobile" aria-current="true">Français</button>
+    <button type="button" id="langEnMobile" aria-current="false">English</button>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero__left">
+      <div class="identity identity--hero reveal">
+        <div class="identity__photo">
+          <img src="data:image/jpeg;base64,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" alt="Portrait de Stephan Fritz Hand, Data Analyst" width="88" height="88">
+        </div>
+        <div class="identity__text">
+          <h3>Stephan Fritz Hand</h3>
+          <div class="role" data-en="Data Analyst · Data &amp; AI Project Lead">Data Analyst · Chef de Projet Data / IA</div>
+        </div>
+      </div>
+      <div class="hero__intro-chip reveal" data-en='<span class="pulse-dot"></span> Available immediately'><span class="pulse-dot"></span> Disponible immédiatement</div>
+      <h1 class="reveal" data-en='I turn data into <span class="grad">operational decisions</span>.'>
+        Je transforme la donnée en <span class="grad">décisions opérationnelles</span>.
+      </h1>
+      <div class="hero__rotator reveal">
+        <span class="label" data-en="// target role :">// rôle ciblé :</span>
+        <span class="roles"><span class="role-flip" id="roleFlip">Data Analyst</span></span>
+      </div>
+      <p class="hero__lede reveal" data-en="Predictive models, LLMs, MLOps pipelines and Power BI dashboards, deployed in production for the business (Finance, Marketing, Tech).">
+        Modèles prédictifs, LLM, pipelines MLOps et dashboards Power BI, déployés en production au service du métier (DAF, Marketing, Tech).
+      </p>
+      <p class="hero__sub reveal" data-en="Nearly 2 years of hands-on experience: work-study at Equalia, Mondial Pare-Brise, ICBS, Sparte Robotics. Currently completing a Master's in Data &amp; AI (NEXA). Fluent in French / English.">
+        Près de 2 ans d'expériences concrètes : alternance Equalia, Mondial Pare-Brise, ICBS, Sparte Robotics. Master 2 Data &amp; IA en cours (NEXA). Bilingue FR / EN.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#projets" class="btn btn-primary" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          <span data-en="View my work">Voir mes réalisations</span>
+        </a>
+        <a href="./Hand fritz_stephan_CV.pdf" class="btn btn-ghost" data-magnetic download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-en="Download résumé">Télécharger le CV</span>
+        </a>
+        <a href="#contact" class="btn btn-ghost" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span data-en="Get in touch">Me contacter</span>
+        </a>
+      </div>
+
+      <!-- Code card python -->
+      <div class="code-card reveal" aria-hidden="true">
+        <div class="code-card__head">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="name">~/profile.py</span>
+        </div>
+        <div class="code-card__body"><span class="tk-com" data-en="# professional identity, extracted from résumé"># identité professionnelle, extraite du CV</span>
+<span class="tk-kw">from</span> career <span class="tk-kw">import</span> DataProfessional
+
+candidate <span class="tk-key">=</span> DataProfessional(
+    name<span class="tk-key">=</span><span class="tk-str">"Stephan Fritz Hand"</span>,
+    roles<span class="tk-key">=</span>[<span class="tk-str">"Data Analyst"</span>, <span class="tk-str">"Data Scientist"</span>,
+           <span class="tk-str" data-en='"AI Engineer"'>"Ingénieur IA"</span>, <span class="tk-str" data-en='"Data Project Lead"'>"Chef de Projet Data"</span>],
+    stack<span class="tk-key">=</span>[<span class="tk-str">"Python"</span>, <span class="tk-str">"SQL"</span>, <span class="tk-str">"Power BI"</span>, <span class="tk-str">"TensorFlow"</span>,
+           <span class="tk-str">"GCP"</span>, <span class="tk-str">"Azure"</span>, <span class="tk-str">"LLM"</span>],
+    available_from<span class="tk-key">=</span><span class="tk-str">"immediately"</span>,
+    mobility<span class="tk-key">=</span><span class="tk-str">"FR · national"</span>,
+    languages<span class="tk-key">=</span>[<span class="tk-str">"FR"</span>, <span class="tk-str">"EN"</span>],
+)
+
+candidate.<span class="tk-fn">deploy</span>(target<span class="tk-key">=</span><span class="tk-str">"CDI"</span>)  <span class="tk-com"># → ready</span></div>
+      </div>
+    </div>
+
+    <!-- HERO DASHBOARD -->
+    <aside class="dashboard reveal" aria-label="Aperçu du profil data">
+      <div class="dashboard__head">
+        <div class="dashboard__title"><span class="led"></span> candidate_profile.bi</div>
+        <span class="dashboard__tag">live · v2026.08</span>
+      </div>
+
+      <!-- KPIs -->
+      <div class="dash-kpis">
+        <div class="kpi">
+          <div class="kpi__lab" data-en="Experience">Expérience</div>
+          <div class="kpi__val acc-1" data-en="~2 yrs">~2 ans</div>
+          <div class="kpi__sub" data-en="data + AI">data + IA</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__lab" data-en="Missions">Missions</div>
+          <div class="kpi__val acc-2">6</div>
+          <div class="kpi__sub" data-en="roles / projects">postes / projets</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__lab" data-en="Teams">Pôles</div>
+          <div class="kpi__val acc-3">3</div>
+          <div class="kpi__sub">DAF · Mkt · Tech</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__lab" data-en="Certs">Certifs</div>
+          <div class="kpi__val acc-1">10+</div>
+          <div class="kpi__sub">GCP · ITIL · CNIL…</div>
+        </div>
+      </div>
+
+      <!-- Progression + Donut -->
+      <div class="dash-row">
+        <div class="dash-panel">
+          <div class="dash-panel__head">
+            <span class="dash-panel__title" data-en="Trajectory 2022 → 2026">Trajectoire 2022 → 2026</span>
+            <span class="dash-panel__badge">growth</span>
+          </div>
+          <svg class="sparkline" viewBox="0 0 320 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="sg" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#22D3EE" stop-opacity="0.4"/>
+                <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- gridlines -->
+            <g stroke="rgba(148,163,184,0.12)" stroke-width="1" fill="none">
+              <line x1="0" y1="22" x2="320" y2="22"/>
+              <line x1="0" y1="45" x2="320" y2="45"/>
+              <line x1="0" y1="68" x2="320" y2="68"/>
+            </g>
+            <!-- area -->
+            <path d="M0 75 L55 70 L110 60 L165 45 L220 30 L275 18 L320 10 L320 90 L0 90 Z" fill="url(#sg)"/>
+            <!-- line -->
+            <path d="M0 75 L55 70 L110 60 L165 45 L220 30 L275 18 L320 10" stroke="#22D3EE" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- points -->
+            <g fill="#22D3EE">
+              <circle cx="0" cy="75" r="3"/>
+              <circle cx="55" cy="70" r="3"/>
+              <circle cx="110" cy="60" r="3"/>
+              <circle cx="165" cy="45" r="3"/>
+              <circle cx="220" cy="30" r="3"/>
+              <circle cx="275" cy="18" r="3"/>
+              <circle cx="320" cy="10" r="4">
+                <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+            <!-- annotations -->
+            <g font-family="JetBrains Mono" font-size="8" fill="rgba(148,163,184,0.7)">
+              <text x="0" y="88">2022</text>
+              <text x="55" y="88">2023</text>
+              <text x="110" y="88">2024</text>
+              <text x="165" y="88">2025</text>
+              <text x="320" y="88" text-anchor="end">2026</text>
+            </g>
+          </svg>
+          <div class="spark-meta">
+            <span>Dare Corp → Equalia</span>
+            <span style="color:#34D399" data-en="Full-time · 2026">CDI · 2026</span>
+          </div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel__head">
+            <span class="dash-panel__title" data-en="Expertise mix">Mix d'expertise</span>
+          </div>
+          <div class="donut-wrap">
+            <div class="donut">
+              <svg viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="rgba(148,163,184,0.12)" stroke-width="4"/>
+                <circle id="seg1" cx="18" cy="18" r="15.915" fill="transparent" stroke="#8B5CF6" stroke-width="4" stroke-dasharray="0 100" stroke-linecap="butt"/>
+                <circle id="seg2" cx="18" cy="18" r="15.915" fill="transparent" stroke="#22D3EE" stroke-width="4" stroke-dasharray="0 100" stroke-linecap="butt"/>
+                <circle id="seg3" cx="18" cy="18" r="15.915" fill="transparent" stroke="#F59E0B" stroke-width="4" stroke-dasharray="0 100" stroke-linecap="butt"/>
+              </svg>
+              <div class="donut__center">100%</div>
+            </div>
+            <div class="donut-legend">
+              <div><i style="background:#8B5CF6"></i><span data-en="Data &amp; AI · 45%">Data &amp; IA · 45%</span></div>
+              <div><i style="background:#22D3EE"></i>BI &amp; SQL · 35%</div>
+              <div><i style="background:#F59E0B"></i><span data-en="Delivery · 20%">Pilotage · 20%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stack proficiency bars -->
+      <div class="dash-panel" style="margin-bottom:14px">
+        <div class="dash-panel__head">
+          <span class="dash-panel__title" data-en="Stack used in production">Stack mobilisée en production</span>
+          <span class="dash-panel__badge">deployed</span>
+        </div>
+        <div class="bars">
+          <div class="bar-row"><span class="bar-row__lab">Python · SQL</span><span class="bar-row__track"><span class="bar-row__fill" data-w="95"></span></span><span class="bar-row__val">95</span></div>
+          <div class="bar-row"><span class="bar-row__lab">Power BI · DAX</span><span class="bar-row__track"><span class="bar-row__fill b-2" data-w="90"></span></span><span class="bar-row__val">90</span></div>
+          <div class="bar-row"><span class="bar-row__lab">ML / TensorFlow</span><span class="bar-row__track"><span class="bar-row__fill b-3" data-w="80"></span></span><span class="bar-row__val">80</span></div>
+          <div class="bar-row"><span class="bar-row__lab">GCP · Azure</span><span class="bar-row__track"><span class="bar-row__fill b-4" data-w="75"></span></span><span class="bar-row__val">75</span></div>
+        </div>
+      </div>
+
+      <!-- Status pills -->
+      <div class="dash-status">
+        <span class="pill pill-ok" data-en="Available immediately">Disponible immédiatement</span>
+        <span class="pill pill-go" data-en="FR · Nationwide">FR · National</span>
+        <span class="pill pill-vio">Master 2 NEXA</span>
+        <span class="pill pill-warm" data-en="Work-study · Equalia">Alt. Equalia</span>
+        <span class="pill pill-rose">FR · EN</span>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item"><span class="dot"></span>Python</span>
+    <span class="marquee__item"><span class="dot"></span>SQL</span>
+    <span class="marquee__item"><span class="dot"></span>Power BI</span>
+    <span class="marquee__item"><span class="dot"></span>Scikit-learn</span>
+    <span class="marquee__item"><span class="dot"></span>TensorFlow</span>
+    <span class="marquee__item"><span class="dot"></span>PyTorch</span>
+    <span class="marquee__item"><span class="dot"></span>Keras</span>
+    <span class="marquee__item"><span class="dot"></span>LLM</span>
+    <span class="marquee__item"><span class="dot"></span>NLP</span>
+    <span class="marquee__item"><span class="dot"></span>Computer Vision</span>
+    <span class="marquee__item"><span class="dot"></span>GCP</span>
+    <span class="marquee__item"><span class="dot"></span>BigQuery</span>
+    <span class="marquee__item"><span class="dot"></span>Azure Data Factory</span>
+    <span class="marquee__item"><span class="dot"></span>Tableau</span>
+    <span class="marquee__item"><span class="dot"></span>Looker</span>
+    <span class="marquee__item"><span class="dot"></span>MongoDB</span>
+    <span class="marquee__item"><span class="dot"></span>PostgreSQL</span>
+    <span class="marquee__item"><span class="dot"></span>Power Query · DAX</span>
+    <span class="marquee__item"><span class="dot"></span>Agile</span>
+    <span class="marquee__item"><span class="dot"></span>ITIL 4</span>
+    <span class="marquee__item"><span class="dot"></span>RGPD · CNIL</span>
+    <!-- duplicate -->
+    <span class="marquee__item"><span class="dot"></span>Python</span>
+    <span class="marquee__item"><span class="dot"></span>SQL</span>
+    <span class="marquee__item"><span class="dot"></span>Power BI</span>
+    <span class="marquee__item"><span class="dot"></span>Scikit-learn</span>
+    <span class="marquee__item"><span class="dot"></span>TensorFlow</span>
+    <span class="marquee__item"><span class="dot"></span>PyTorch</span>
+    <span class="marquee__item"><span class="dot"></span>Keras</span>
+    <span class="marquee__item"><span class="dot"></span>LLM</span>
+    <span class="marquee__item"><span class="dot"></span>NLP</span>
+    <span class="marquee__item"><span class="dot"></span>Computer Vision</span>
+    <span class="marquee__item"><span class="dot"></span>GCP</span>
+    <span class="marquee__item"><span class="dot"></span>BigQuery</span>
+    <span class="marquee__item"><span class="dot"></span>Azure Data Factory</span>
+    <span class="marquee__item"><span class="dot"></span>Tableau</span>
+    <span class="marquee__item"><span class="dot"></span>Looker</span>
+    <span class="marquee__item"><span class="dot"></span>MongoDB</span>
+    <span class="marquee__item"><span class="dot"></span>PostgreSQL</span>
+    <span class="marquee__item"><span class="dot"></span>Power Query · DAX</span>
+    <span class="marquee__item"><span class="dot"></span>Agile</span>
+    <span class="marquee__item"><span class="dot"></span>ITIL 4</span>
+    <span class="marquee__item"><span class="dot"></span>RGPD · CNIL</span>
+  </div>
+</div>
+
+<!-- ===== PIPELINE SECTION ===== -->
+<section class="pipeline-section">
+  <div class="wrap">
+    <div class="pipeline-head reveal">
+      <div class="eyebrow" data-en="Value chain">Chaîne de valeur</div>
+      <h2 data-en="From raw data to business decisions.">De la donnée brute à la décision métier.</h2>
+      <p data-en="How I work in practice, from scoping to production for data and AI tools.">Comment j'interviens concrètement, du cadrage à la mise en production des outils data et IA.</p>
+    </div>
+
+    <div class="pipeline reveal reveal-stagger">
+      <div class="pipe-node">
+        <div class="pipe-node__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h4 data-en="Data sources">Sources data</h4>
+        <p>SQL · BigQuery · APIs · MongoDB · Oracle</p>
+        <div class="pipe-node__particles"></div>
+      </div>
+
+      <div class="pipe-node">
+        <div class="pipe-node__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h4 data-en="Processing">Traitement</h4>
+        <p>Python · Pandas · NumPy · Power Query</p>
+        <div class="pipe-node__particles"></div>
+      </div>
+
+      <div class="pipe-node">
+        <div class="pipe-node__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="7" y1="6" x2="10" y2="10"/><line x1="17" y1="6" x2="14" y2="10"/><line x1="7" y1="18" x2="10" y2="14"/><line x1="17" y1="18" x2="14" y2="14"/></svg>
+        </div>
+        <h4 data-en="AI models">Modèles IA</h4>
+        <p>Scikit-learn · TensorFlow · LLM · NLP</p>
+        <div class="pipe-node__particles"></div>
+      </div>
+
+      <div class="pipe-node">
+        <div class="pipe-node__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4 data-en="Reporting">Restitution</h4>
+        <p>Power BI · Tableau · Looker · DAX</p>
+        <div class="pipe-node__particles"></div>
+      </div>
+
+      <div class="pipe-node">
+        <div class="pipe-node__ico" style="background:linear-gradient(135deg, rgba(16,185,129,0.22), rgba(34,211,238,0.16));border-color:rgba(16,185,129,0.4);color:#6EE7B7">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4 data-en="Business decisions">Décisions métier</h4>
+        <p data-en="Finance · Marketing · Tech · Leadership">DAF · Marketing · Tech · Direction</p>
+        <div class="pipe-node__particles"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREDIBILITY STRIP ===== -->
+<div class="cred-strip">
+  <div class="wrap cred-strip__inner">
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Master 2 Data &amp; IA · NEXA</span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Work-study Equalia · Finance / Mkt / Tech">Alternance Equalia · DAF / Mkt / Tech</span></span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="GCP &amp; Auto-ML certified">Certifié GCP &amp; Auto-ML</span></span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> ITIL 4 Foundation</span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> CNIL · ISO 27001 Lead Implementer</span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Fluent FR / EN">Bilingue FR / EN</span></span>
+    <span class="cred-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-en="Nationwide mobility">Mobilité nationale</span></span>
+  </div>
+</div>
+
+<!-- ===== PROFIL — with SQL block ===== -->
+<section id="profil">
+  <span class="section-watermark">01</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="01 · Profile">01 · Profil</div>
+      <h2 data-en="A profile built for production, business impact and delivery.">Profil orienté production, métier et impact.</h2>
+      <p data-en="A hybrid Data Analyst / Data &amp; AI Project Lead profile, with hands-on experience in industry and a specialised Master's degree.">Un profil hybride entre Data Analyst et Chef de Projet Data / IA, avec une expérience terrain en entreprise et un Master 2 spécialisé.</p>
+    </div>
+
+    <!-- SQL Card -->
+    <div class="sql-card reveal" aria-hidden="true">
+      <div class="sql-card__head">
+        <span class="name">~/queries/find_candidate.sql</span>
+        <span class="badge">1 row returned</span>
+      </div>
+      <div class="sql-card__body"><span class="sql-com" data-en="-- search for a matching profile">-- recherche du profil correspondant</span>
+<span class="sql-kw">SELECT</span> name, current_role, available_from
+<span class="sql-kw">FROM</span>   candidates
+<span class="sql-kw">WHERE</span>  role <span class="sql-kw">IN</span> (<span class="sql-str">'Data Analyst'</span>, <span class="sql-str">'Data Scientist'</span>,
+                  <span class="sql-str" data-en="'AI Engineer'">'Ingénieur IA'</span>, <span class="sql-str" data-en="'Data Project Lead'">'Chef de Projet Data'</span>)
+  <span class="sql-kw">AND</span> available_from <span class="sql-key">&lt;=</span> <span class="sql-str">CURRENT_DATE</span>
+  <span class="sql-kw">AND</span> mobility       <span class="sql-key">=</span> <span class="sql-str" data-en="'nationwide'">'national'</span>
+  <span class="sql-kw">AND</span> production_ready <span class="sql-key">=</span> <span class="sql-fn">TRUE</span>
+<span class="sql-kw">ORDER BY</span> impact_score <span class="sql-kw">DESC</span>
+<span class="sql-kw">LIMIT</span>  1;
+
+<span class="sql-arrow">→</span> <span class="sql-str">Stephan Fritz Hand</span> · <span class="sql-str" data-en="Data Analyst &amp; Data / AI Project Lead">Data Analyst &amp; Chef de Projet Data / IA</span> · <span class="sql-str" data-en="Available immediately">Disponible immédiatement</span></div>
+    </div>
+
+    <div class="profil__grid">
+      <div class="profil__text reveal">
+        <p data-en="<strong>Stephan Fritz Hand</strong>, currently on a work-study programme at <strong>Equalia</strong> as part of a Master's in Data &amp; AI at <strong>NEXA Digital School</strong>. Nearly 2 years of hands-on experience deploying AI solutions in production: predictive models, LLMs, MLOps pipelines and Power BI dashboards.">
+          <strong>Stephan Fritz Hand</strong>, actuellement en alternance chez <strong>Equalia</strong> dans le cadre du Master 2 Data &amp; IA à <strong>NEXA Digital School</strong>. Près de 2 ans d'expériences concrètes en déploiement de solutions IA en production : modèles prédictifs, LLM, pipelines MLOps et dashboards Power BI.
+        </p>
+        <p data-en="I work across both the <strong>technical side</strong> (Python, SQL, TensorFlow, Azure, GCP) and <strong>data project leadership</strong>, at the interface between business teams (Finance, Marketing) and IT. Fluent in French and English.">
+          J'interviens aussi bien sur la <strong>dimension technique</strong> (Python, SQL, TensorFlow, Azure, GCP) que sur le <strong>pilotage de projets data</strong>, à l'interface entre les équipes métier (DAF, Marketing) et les équipes IT. Bilingue français / anglais.
+        </p>
+        <p data-en="Goal: join a company <strong>immediately</strong> as a Data Analyst, Data Scientist, AI Engineer or Data Project Lead, turning data into concrete, production-ready decisions.">
+          Objectif : intégrer une entreprise <strong>dès maintenant (disponible immédiatement)</strong> sur un poste de Data Analyst, Data Scientist, Ingénieur IA ou Chef de Projet Data, pour transformer la donnée en décisions concrètes et industrialisables.
+        </p>
+      </div>
+
+      <div class="position-cards reveal reveal-stagger">
+        <div class="position-card glow-card">
+          <div class="position-card__head">
+            <span class="position-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </span>
+            <h3 data-en="Applied data &amp; AI expertise">Expertise data &amp; IA appliquée</h3>
+          </div>
+          <p data-en="Predictive modelling, NLP, computer vision, LLMs. Shipping AI POCs integrated into internal tools.">Modélisation prédictive, NLP, computer vision, LLM. Mise en production de POCs IA intégrés aux outils internes.</p>
+        </div>
+        <div class="position-card glow-card">
+          <div class="position-card__head">
+            <span class="position-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </span>
+            <h3 data-en="Data delivery &amp; reporting">Pilotage data &amp; reporting</h3>
+          </div>
+          <p data-en="Power BI dashboards, Power Query / DAX automation, reporting aimed at leadership and operational teams.">Dashboards Power BI, automatisations Power Query / DAX, reporting orienté direction et équipes opérationnelles.</p>
+        </div>
+        <div class="position-card glow-card">
+          <div class="position-card__head">
+            <span class="position-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <h3 data-en="Business interface &amp; leadership">Interface métier &amp; chefferie</h3>
+          </div>
+          <p data-en="Translating insights for non-technical audiences, Agile project management, GDPR / CNIL compliance, collaboration with Finance, Marketing and Tech.">Vulgarisation des insights, gestion de projet Agile, conformité RGPD / CNIL, collaboration avec DAF, Marketing et Tech.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERTISE — avec radar ===== -->
+<section id="expertise">
+  <span class="section-watermark">02</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="02 · Expertise">02 · Expertise</div>
+      <h2 data-en="Six domains, all used in production.">Six domaines, tous mobilisés en production.</h2>
+      <p data-en="A map of my areas of work, drawn directly from my missions and my degree.">Une cartographie de mes domaines d'intervention, issus directement de mes missions et de mon cursus.</p>
+    </div>
+
+    <div class="expertise-layout">
+
+      <div class="expertise-grid reveal reveal-stagger">
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="7" y1="6" x2="10" y2="10"/><line x1="17" y1="6" x2="14" y2="10"/><line x1="7" y1="18" x2="10" y2="14"/><line x1="17" y1="18" x2="14" y2="14"/></svg>
+          </div>
+          <h3>ML &amp; Deep Learning</h3>
+          <p data-en="Classification, regression, segmentation, anomaly detection. POCs integrated into internal tools.">Classification, régression, segmentation, détection d'anomalies. POCs intégrés aux outils internes.</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">Scikit-learn</span><span class="tag-chip">TensorFlow</span>
+            <span class="tag-chip">Keras</span><span class="tag-chip">PyTorch</span>
+          </div>
+        </article>
+
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h3 data-en="LLM &amp; Generative AI">LLM &amp; IA générative</h3>
+          <p data-en="Integrating and working with LLMs in production (e.g. an app for automated HR contract generation).">Intégration et manipulation de LLM en production (ex. application de génération automatisée de contrats RH).</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">LLM</span><span class="tag-chip">NLP</span>
+            <span class="tag-chip">APIs IA</span><span class="tag-chip">Prompting</span>
+          </div>
+        </article>
+
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 data-en="BI &amp; Data Visualization">BI &amp; Data Visualisation</h3>
+          <p data-en="Power BI, Tableau, Looker dashboards. Consolidating KPIs and automating recurring data flows.">Dashboards Power BI, Tableau, Looker. Consolidation des KPIs et automatisation des flux récurrents.</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">Power BI</span><span class="tag-chip">Tableau</span>
+            <span class="tag-chip">Looker</span><span class="tag-chip">DAX</span>
+          </div>
+        </article>
+
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <h3>Data Engineering &amp; Cloud</h3>
+          <p data-en="GCP, BigQuery and Azure Data Factory pipelines. SQL / NoSQL databases: reliable, scalable architectures.">Pipelines GCP, BigQuery et Azure Data Factory. Bases SQL / NoSQL : architectures fiables et scalables.</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">GCP</span><span class="tag-chip">BigQuery</span>
+            <span class="tag-chip">Azure</span><span class="tag-chip">SQL / NoSQL</span>
+          </div>
+        </article>
+
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h3 data-en="Data project management">Gestion de projet Data</h3>
+          <p data-en="Scoping, business / IT coordination, Agile, ITIL 4. Documented deliverables built to last.">Cadrage, coordination métier / IT, Agile, ITIL 4. Livrables documentés et tenables sur la durée.</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">Agile</span><span class="tag-chip">ITIL 4</span>
+            <span class="tag-chip">Cadrage</span><span class="tag-chip">Pilotage</span>
+          </div>
+        </article>
+
+        <article class="exp-card glow-card">
+          <div class="exp-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 data-en="GDPR &amp; governance">RGPD &amp; gouvernance</h3>
+          <p data-en="DPO Bachelor's, CNIL and ISO 27001 Lead Implementer certified. Compliant data projects from day one.">Bachelor DPO, CNIL et ISO 27001 Lead Implementer. Projets data conformes dès le cadrage.</p>
+          <div class="exp-card__tags">
+            <span class="tag-chip">RGPD</span><span class="tag-chip">CNIL</span>
+            <span class="tag-chip">ISO 27001</span><span class="tag-chip">Gouvernance</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- RADAR -->
+      <div class="radar-wrap reveal">
+        <h4 data-en="Domain map">Cartographie des domaines</h4>
+        <svg class="radar-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="radarG" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#8B5CF6" stop-opacity="0.5"/>
+              <stop offset="1" stop-color="#22D3EE" stop-opacity="0.25"/>
+            </radialGradient>
+          </defs>
+          <!-- Grid hexagons -->
+          <g fill="none" stroke="rgba(148,163,184,0.15)" stroke-width="1">
+            <polygon points="160,40 264,100 264,220 160,280 56,220 56,100"/>
+            <polygon points="160,70 238,115 238,205 160,250 82,205 82,115"/>
+            <polygon points="160,100 212,130 212,190 160,220 108,190 108,130"/>
+            <polygon points="160,130 186,145 186,175 160,190 134,175 134,145"/>
+          </g>
+          <!-- Axes -->
+          <g stroke="rgba(148,163,184,0.18)" stroke-width="1">
+            <line x1="160" y1="160" x2="160" y2="40"/>
+            <line x1="160" y1="160" x2="264" y2="100"/>
+            <line x1="160" y1="160" x2="264" y2="220"/>
+            <line x1="160" y1="160" x2="160" y2="280"/>
+            <line x1="160" y1="160" x2="56" y2="220"/>
+            <line x1="160" y1="160" x2="56" y2="100"/>
+          </g>
+          <!-- Filled radar polygon -->
+          <polygon id="radarPoly" points="160,72 246,108 254,213 160,256 70,212 78,108" fill="url(#radarG)" stroke="#8B5CF6" stroke-width="2" opacity="0.85"/>
+          <!-- Points -->
+          <g fill="#22D3EE">
+            <circle cx="160" cy="72" r="4"/>
+            <circle cx="246" cy="108" r="4"/>
+            <circle cx="254" cy="213" r="4"/>
+            <circle cx="160" cy="256" r="4"/>
+            <circle cx="70" cy="212" r="4"/>
+            <circle cx="78" cy="108" r="4"/>
+          </g>
+          <!-- Labels -->
+          <g font-family="Space Grotesk" font-size="11" fill="rgba(248,250,252,0.85)" font-weight="500">
+            <text x="160" y="28" text-anchor="middle">ML &amp; DL</text>
+            <text x="278" y="100" text-anchor="middle">LLM</text>
+            <text x="282" y="225" text-anchor="middle">BI &amp; Viz</text>
+            <text x="160" y="302" text-anchor="middle" data-en="Data Eng.">Data Eng.</text>
+            <text x="38" y="225" text-anchor="middle" data-en="Delivery">Pilotage</text>
+            <text x="38" y="105" text-anchor="middle" data-en="GDPR">RGPD</text>
+          </g>
+        </svg>
+        <div class="radar-legend">
+          <span data-en="· 6 active domains">· 6 domaines actifs</span>
+          <span data-en="· Used on live missions">· Mobilisés en mission</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <span class="section-watermark">03</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="03 · Experience">03 · Expérience</div>
+      <h2 data-en="Nearly 2 years of hands-on missions.">Près de 2 ans de missions concrètes.</h2>
+      <p data-en="A continuous track record, from internship to work-study to freelance, always in direct contact with business teams.">Une trajectoire continue, du stage à l'alternance en passant par le freelance, au contact direct des équipes métier.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-alt" data-en="Work-study">Alternance</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(139,92,246,0.08);color:#C4B5FD;border-color:rgba(139,92,246,0.2)" data-en="Finance · Marketing · Tech">DAF · Marketing · Tech</span>
+          </div>
+          <div class="tl-card__head">
+            <h3 data-en='Data &amp; AI Work-Study <span class="company">· Equalia</span>'>Alternant Data &amp; Intelligence Artificielle <span class="company">· Equalia</span></h3>
+            <div class="tl-card__meta"><span data-en="Sept. 2025 - Present">Sept. 2025 - Présent</span> · <span>Suresnes, France</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="Cross-functional work-study · AI and data in service of business operations across 3 teams.">Alternance transverse · IA et data au service des opérations métier sur 3 pôles.</p>
+          <ul>
+            <li data-en="Designed and shipped an automated HR contract generation app, significantly reducing drafting time and improving document reliability.">Conçu et déployé une application de génération automatisée de contrats RH, réduisant significativement le temps de rédaction et fiabilisant les documents.</li>
+            <li data-en="Built predictive analysis tools for financial planning and automated Power BI dashboards (Finance team).">Développé des outils d'analyse prédictive pour le pilotage financier et automatisé les tableaux de bord Power BI (pôle DAF).</li>
+            <li data-en="Implemented anomaly-detection models for internal control.">Mis en place des modèles de détection d'anomalies pour le contrôle interne.</li>
+            <li data-en="Leveraged customer data for segmentation, marketing targeting and product recommendation (Product Marketing team).">Exploité les données clients pour la segmentation, le ciblage marketing et la recommandation produit (pôle Marketing Produit).</li>
+            <li data-en="Designed and trained ML / Deep Learning models, shipped AI POCs integrated into internal tools (Tech team).">Conçu et entraîné des modèles ML / Deep Learning, livré des POCs IA intégrés aux outils internes (pôle Technique).</li>
+          </ul>
+          <div class="tl-card__stack-grid">
+            <div class="tl-stack-row"><b data-en="Stack:">Stack :</b>
+              <span class="tag-chip">Python</span><span class="tag-chip">SQL</span><span class="tag-chip">Power BI</span>
+              <span class="tag-chip">Pandas</span><span class="tag-chip">Scikit-learn</span><span class="tag-chip">TensorFlow</span>
+              <span class="tag-chip">LLM</span><span class="tag-chip">APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-stage" data-en="Internship">Stage</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(34,211,238,0.08);color:#67E8F9;border-color:rgba(34,211,238,0.2)" data-en="Finance department">Direction financière</span>
+          </div>
+          <div class="tl-card__head">
+            <h3 data-en='Data Analyst Intern <span class="company">· Mondial Pare-Brise</span>'>Stagiaire Data Analyst <span class="company">· Mondial Pare-Brise</span></h3>
+            <div class="tl-card__meta"><span data-en="Jan. 2025 - Jun. 2025">Janv. 2025 - Juin 2025</span> · <span>Paris, France</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="6-month mission within the finance department, focused on improving sales performance management through data.">Mission de 6 mois en direction financière, focalisée sur l'optimisation du pilotage commercial via la data.</p>
+          <ul>
+            <li data-en="Built Power BI dashboards consolidating sales &amp; profitability KPIs for smoother weekly reporting.">Conçu des tableaux de bord Power BI consolidant les KPIs ventes &amp; rentabilité, pour un reporting hebdomadaire fluidifié.</li>
+            <li data-en="Identified process-optimisation opportunities through cross Excel / SQL analysis, incorporated into the 2025 action plan.">Identifié des axes d'optimisation des processus internes via analyses croisées Excel / SQL, intégrés au plan d'action 2025.</li>
+            <li data-en="Automated recurring reporting flows (Power Query, DAX), freeing up time for the business team.">Automatisé des flux de reporting récurrents (Power Query, DAX), libérant du temps métier.</li>
+          </ul>
+          <div class="tl-card__stack-grid">
+            <div class="tl-stack-row"><b data-en="Stack:">Stack :</b>
+              <span class="tag-chip">Power BI</span><span class="tag-chip">SQL</span>
+              <span class="tag-chip" data-en="Advanced Excel">Excel avancé</span><span class="tag-chip">Power Query</span><span class="tag-chip">DAX</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-free">Freelance</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(245,158,11,0.08);color:#FBBF24;border-color:rgba(245,158,11,0.2)" data-en="Sales performance">Pilotage commercial</span>
+          </div>
+          <div class="tl-card__head">
+            <h3>Data Analyst (Freelance) <span class="company">· ICBS</span></h3>
+            <div class="tl-card__meta"><span>2023 - 2024</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="Long-term engagement to industrialise data analysis in support of sales performance management.">Mission longue durée pour industrialiser l'analyse data au service du pilotage commercial.</p>
+          <ul>
+            <li data-en='Built predictive models in Python and SQL to identify high-potential accounts, delivering <b>+25% measured sales efficiency</b>.'>Développé des modèles prédictifs en Python et SQL pour identifier les potentiels d'activité, avec <b>+25 % d'efficacité commerciale</b> mesurée.</li>
+            <li data-en="Industrialised Power BI reporting: automated visualisations and actionable insights delivered to leadership.">Industrialisé le reporting Power BI : visualisations automatisées et insights actionnables livrés à la direction.</li>
+            <li data-en="Integrated machine learning components to optimise internal processes (segmentation, scoring).">Intégré des briques machine learning pour optimiser les processus internes (segmentation, scoring).</li>
+          </ul>
+          <div class="tl-card__stack-grid">
+            <div class="tl-stack-row"><b data-en="Stack:">Stack :</b>
+              <span class="tag-chip">Python</span><span class="tag-chip">SQL</span><span class="tag-chip">Power BI</span>
+              <span class="tag-chip">Scikit-learn</span><span class="tag-chip">Big Data</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-stage">Assistant</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(34,211,238,0.08);color:#67E8F9;border-color:rgba(34,211,238,0.2)">Data Marketing</span>
+          </div>
+          <div class="tl-card__head">
+            <h3 data-en='Data Analyst Assistant <span class="company">· Sparte Robotics</span>'>Assistant Data Analyst <span class="company">· Sparte Robotics</span></h3>
+            <div class="tl-card__meta"><span data-en="Oct. 2022 - Oct. 2023">Oct. 2022 - Oct. 2023</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="Mission focused on marketing data and BigQuery.">Mission orientée data marketing et exploitation BigQuery.</p>
+          <ul>
+            <li data-en="Built Looker and Power BI dashboards to track marketing KPIs, with automated projections.">Créé des dashboards Looker et Power BI pour le suivi des KPIs marketing, avec projections automatisées.</li>
+            <li data-en="Wrote SQL and BigQuery queries to analyse campaign performance and integrated technical components (APIs).">Réalisé des requêtes SQL et BigQuery pour analyser la performance des campagnes et intégré des composants techniques (APIs).</li>
+            <li data-en="Translated insights for operational teams and documented automation procedures.">Vulgarisé les insights auprès des équipes opérationnelles et documenté les procédures d'automatisation.</li>
+          </ul>
+          <div class="tl-card__stack-grid">
+            <div class="tl-stack-row"><b data-en="Stack:">Stack :</b>
+              <span class="tag-chip">SQL</span><span class="tag-chip">BigQuery</span><span class="tag-chip">Power BI</span>
+              <span class="tag-chip">Looker</span><span class="tag-chip">APIs</span><span class="tag-chip">GCP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-teach" data-en="Teaching">Enseignement</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(16,185,129,0.08);color:#34D399;border-color:rgba(16,185,129,0.2)" data-en="Programming · AI">Programmation · IA</span>
+          </div>
+          <div class="tl-card__head">
+            <h3 data-en='Programming Lecturer <span class="company">· ISSA&#39;D / ESSIAC</span>'>Chargé de cours en Programmation <span class="company">· ISSA'D / ESSIAC</span></h3>
+            <div class="tl-card__meta"><span data-en="Mar. 2022 - Jun. 2024">Mars 2022 - Juin 2024</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="Taught courses and hands-on workshops alongside data missions.">Animation de cours et d'ateliers pratiques en parallèle des missions data.</p>
+          <ul>
+            <li data-en="Taught Python, SQL, C, Java, JavaScript, HTML/CSS and C# to undergraduate and vocational software-engineering students.">Enseigné Python, SQL, C, Java, JavaScript, HTML/CSS et C# à des étudiants Licence et BTS en génie logiciel.</li>
+            <li data-en="Ran AI / Machine Learning workshops: integrating AI tools, working with LLMs, designing and training models.">Animé des ateliers IA / Machine Learning : intégration d'outils IA, manipulation de LLM, conception et entraînement de modèles.</li>
+            <li data-en="Supervised student projects, built teaching materials and practical exercises.">Encadré des projets étudiants, conçu supports pédagogiques et exercices pratiques.</li>
+          </ul>
+          <div class="tl-card__stack-grid">
+            <div class="tl-stack-row"><b data-en="Stack:">Stack :</b>
+              <span class="tag-chip">Python</span><span class="tag-chip">SQL</span>
+              <span class="tag-chip">Java · C · C#</span><span class="tag-chip">JS · HTML/CSS</span><span class="tag-chip">ML · LLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card glow-card">
+          <div class="tl-card__top">
+            <span class="tl-type tl-type-stage" data-en="Internship">Stage</span>
+            <span class="tl-type tl-type-stage" style="background:rgba(34,211,238,0.08);color:#67E8F9;border-color:rgba(34,211,238,0.2)" data-en="Data preparation">Préparation de données</span>
+          </div>
+          <div class="tl-card__head">
+            <h3 data-en='Data Analyst Intern <span class="company">· Dare Corp</span>'>Stagiaire Analyste de Données <span class="company">· Dare Corp</span></h3>
+            <div class="tl-card__meta"><span data-en="Apr. 2022 - Sept. 2022">Avr. 2022 - Sept. 2022</span></div>
+          </div>
+          <p class="tl-card__sub" data-en="Internship focused on data collection, preparation and analysis.">Stage focalisé sur la collecte, la préparation et l'analyse de données.</p>
+          <ul>
+            <li data-en="Carried out data collection, preparation and cleaning for analysis, ensuring quality and reliability.">Réalisé la collecte, la préparation et le nettoyage de données pour des analyses, garantissant qualité et fiabilité.</li>
+            <li data-en="Supported teams in understanding data to inform operational decisions.">Appuyé les équipes dans la compréhension des données pour éclairer les décisions opérationnelles.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJETS — Jupyter cells ===== -->
+<section id="projets">
+  <span class="section-watermark">04</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="04 · Key achievements">04 · Réalisations clés</div>
+      <h2 data-en="Four concrete achievements, presented as notebook cells.">Quatre réalisations concrètes, présentées en cellules.</h2>
+      <p data-en="Notebook-inspired format: each cell describes the mission, its stack, and the observed output. Technical details available on request.">Format inspiré du notebook : chaque cellule décrit la mission, sa stack, et la sortie observée. Détails techniques disponibles en entretien.</p>
+    </div>
+
+    <div class="case-grid reveal reveal-stagger">
+
+      <!-- CELL 1 -->
+      <article class="cell">
+        <div class="cell__in">
+          <span class="cell__num">In [1]:</span>
+          <pre class="cell__code"><span class="tk-kw">from</span> sklearn.ensemble <span class="tk-kw">import</span> GradientBoostingRegressor
+<span class="tk-kw">from</span> reporting       <span class="tk-kw">import</span> PowerBI
+
+model <span class="tk-key">=</span> GradientBoostingRegressor()
+model.<span class="tk-fn">fit</span>(X_train, y_train)
+PowerBI.<span class="tk-fn">publish</span>(predictions<span class="tk-key">=</span>model.<span class="tk-fn">predict</span>(X))</pre>
+        </div>
+        <div class="cell__out">
+          <div class="cell__out-label">Out [1]:</div>
+          <div class="cell__visual">
+            <svg viewBox="0 0 400 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#22D3EE" stop-opacity="0.4"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/></linearGradient></defs>
+              <g stroke="rgba(255,255,255,0.08)" fill="none" stroke-width="1"><line x1="0" y1="40" x2="400" y2="40"/><line x1="0" y1="85" x2="400" y2="85"/><line x1="0" y1="130" x2="400" y2="130"/></g>
+              <path d="M0 130 Q50 110 100 100 T200 70 T300 45 T400 25 L400 170 L0 170 Z" fill="url(#g1)"/>
+              <path d="M0 130 Q50 110 100 100 T200 70 T300 45 T400 25" stroke="#22D3EE" stroke-width="2.5" fill="none"/>
+              <circle cx="100" cy="100" r="4" fill="#22D3EE"><animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/></circle>
+              <circle cx="200" cy="70" r="4" fill="#22D3EE"/>
+              <circle cx="300" cy="45" r="4" fill="#22D3EE"/>
+              <text x="395" y="20" text-anchor="end" font-family="JetBrains Mono" font-size="9" fill="#10B981">+25%</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cell__body">
+          <div class="cell__cat" data-en="ML · Sales performance">ML · Pilotage commercial</div>
+          <h3 data-en="Predictive sales-efficiency models">Modèles prédictifs d'efficacité commerciale</h3>
+          <p class="cell__desc" data-en="Industrialised Python / SQL models to identify high-potential accounts, feeding Power BI reporting delivered to leadership (ICBS).">Industrialisation de modèles Python / SQL pour identifier les potentiels d'activité et nourrir le reporting Power BI livré à la direction (ICBS).</p>
+          <div class="cell__tags">
+            <span class="tag-chip">Python</span><span class="tag-chip">SQL</span>
+            <span class="tag-chip">Scikit-learn</span><span class="tag-chip">Power BI</span>
+          </div>
+          <div class="cell__result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <span data-en="+25% measured sales efficiency">+25 % d'efficacité commerciale mesurée</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CELL 2 -->
+      <article class="cell">
+        <div class="cell__in">
+          <span class="cell__num">In [2]:</span>
+          <pre class="cell__code"><span class="tk-kw">import</span> pandas <span class="tk-kw">as</span> pd
+<span class="tk-kw">from</span> dax <span class="tk-kw">import</span> Measure
+
+sales <span class="tk-key">=</span> pd.<span class="tk-fn">read_sql</span>(<span class="tk-str">"SELECT * FROM sales"</span>, conn)
+kpi   <span class="tk-key">=</span> Measure(<span class="tk-str">"CA_total"</span>, <span class="tk-str">"SUM(sales[amount])"</span>)
+dashboard.<span class="tk-fn">refresh</span>(weekly<span class="tk-key">=</span><span class="tk-fn">True</span>)</pre>
+        </div>
+        <div class="cell__out">
+          <div class="cell__out-label">Out [2]:</div>
+          <div class="cell__visual">
+            <svg viewBox="0 0 400 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="170" fill="#0D1220"/>
+              <!-- bars -->
+              <g fill="#8B5CF6" fill-opacity="0.7">
+                <rect x="30"  y="105" width="22" height="50" rx="3"/>
+                <rect x="62"  y="85"  width="22" height="70" rx="3"/>
+                <rect x="94"  y="65"  width="22" height="90" rx="3"/>
+                <rect x="126" y="50"  width="22" height="105" rx="3"/>
+                <rect x="158" y="70"  width="22" height="85" rx="3"/>
+                <rect x="190" y="40"  width="22" height="115" rx="3"/>
+                <rect x="222" y="30"  width="22" height="125" rx="3"/>
+              </g>
+              <!-- donut -->
+              <circle cx="320" cy="85" r="38" fill="none" stroke="rgba(148,163,184,0.15)" stroke-width="8"/>
+              <circle cx="320" cy="85" r="38" fill="none" stroke="#22D3EE" stroke-width="8" stroke-dasharray="160 80" transform="rotate(-90 320 85)" stroke-linecap="round"/>
+              <text x="320" y="90" text-anchor="middle" fill="#F8FAFC" font-family="Space Grotesk" font-size="16" font-weight="600">67%</text>
+              <text x="320" y="140" text-anchor="middle" fill="rgba(148,163,184,0.7)" font-family="JetBrains Mono" font-size="9" data-en="net margin">marge nette</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cell__body">
+          <div class="cell__cat" data-en="BI · Finance department">BI · Direction financière</div>
+          <h3 data-en="Sales &amp; profitability management">Pilotage ventes &amp; rentabilité</h3>
+          <p class="cell__desc" data-en="Power BI dashboards consolidating sales and margin KPIs, with automated Power Query / DAX flows (Mondial Pare-Brise).">Dashboards Power BI consolidant KPIs ventes et marges, et automatisation des flux Power Query / DAX (Mondial Pare-Brise).</p>
+          <div class="cell__tags">
+            <span class="tag-chip">Power BI</span><span class="tag-chip">SQL</span>
+            <span class="tag-chip">DAX</span><span class="tag-chip">Power Query</span>
+          </div>
+          <div class="cell__result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-en="Smoother weekly reporting">Reporting hebdomadaire fluidifié</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CELL 3 -->
+      <article class="cell">
+        <div class="cell__in">
+          <span class="cell__num">In [3]:</span>
+          <pre class="cell__code"><span class="tk-kw">from</span> llm <span class="tk-kw">import</span> ContractGenerator
+
+gen <span class="tk-key">=</span> ContractGenerator(model<span class="tk-key">=</span><span class="tk-str">"llm-fr"</span>, template<span class="tk-key">=</span>rh_tpl)
+doc <span class="tk-key">=</span> gen.<span class="tk-fn">draft</span>(employee<span class="tk-key">=</span>data, validate<span class="tk-key">=</span><span class="tk-fn">True</span>)
+HR.<span class="tk-fn">export</span>(doc, fmt<span class="tk-key">=</span><span class="tk-str">"pdf"</span>)</pre>
+        </div>
+        <div class="cell__out">
+          <div class="cell__out-label">Out [3]:</div>
+          <div class="cell__visual">
+            <svg viewBox="0 0 400 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="170" fill="#0D1220"/>
+              <!-- network nodes -->
+              <g stroke="rgba(245,158,11,0.4)" stroke-width="1" fill="none">
+                <path d="M50 85 L130 50"/><path d="M50 85 L130 85"/><path d="M50 85 L130 120"/>
+                <path d="M130 50 L210 60"/><path d="M130 50 L210 100"/>
+                <path d="M130 85 L210 60"/><path d="M130 85 L210 100"/><path d="M130 85 L210 140"/>
+                <path d="M130 120 L210 100"/><path d="M130 120 L210 140"/>
+                <path d="M210 60 L290 85"/><path d="M210 100 L290 85"/><path d="M210 140 L290 85"/>
+                <path d="M290 85 L370 85"/>
+              </g>
+              <g fill="#F59E0B">
+                <circle cx="50"  cy="85" r="6"/>
+                <circle cx="130" cy="50" r="5"/><circle cx="130" cy="85" r="5"/><circle cx="130" cy="120" r="5"/>
+                <circle cx="210" cy="60" r="5"/><circle cx="210" cy="100" r="5"/><circle cx="210" cy="140" r="5"/>
+                <circle cx="290" cy="85" r="6"><animate attributeName="r" values="6;9;6" dur="2.5s" repeatCount="indefinite"/></circle>
+                <circle cx="370" cy="85" r="6"/>
+              </g>
+              <text x="50" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="rgba(148,163,184,0.7)">input</text>
+              <text x="210" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="rgba(245,158,11,0.8)">LLM</text>
+              <text x="370" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="rgba(16,185,129,0.8)">contrat</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cell__body">
+          <div class="cell__cat" data-en="LLM · HR automation">LLM · Automatisation RH</div>
+          <h3 data-en="Automated contract generation">Génération automatisée de contrats</h3>
+          <p class="cell__desc" data-en="LLM application to draft and validate HR contracts, integrated into the internal tool (Equalia).">Application LLM pour la rédaction et la fiabilisation des contrats côté RH, intégrée à l'outil interne (Equalia).</p>
+          <div class="cell__tags">
+            <span class="tag-chip">Python</span><span class="tag-chip">LLM</span>
+            <span class="tag-chip">APIs</span><span class="tag-chip">NLP</span>
+          </div>
+          <div class="cell__result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-en="Drafting time significantly reduced">Temps de rédaction significativement réduit</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- CELL 4 -->
+      <article class="cell">
+        <div class="cell__in">
+          <span class="cell__num">In [4]:</span>
+          <pre class="cell__code"><span class="tk-kw">from</span> sklearn.cluster <span class="tk-kw">import</span> KMeans
+
+clusters <span class="tk-key">=</span> KMeans(n_clusters<span class="tk-key">=</span><span class="tk-num">5</span>).<span class="tk-fn">fit_predict</span>(customers)
+segments <span class="tk-key">=</span> recommend.<span class="tk-fn">build</span>(clusters)
+marketing.<span class="tk-fn">target</span>(segments, channel<span class="tk-key">=</span><span class="tk-str">"all"</span>)</pre>
+        </div>
+        <div class="cell__out">
+          <div class="cell__out-label">Out [4]:</div>
+          <div class="cell__visual">
+            <svg viewBox="0 0 400 170" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="170" fill="#0D1220"/>
+              <g stroke="rgba(16,185,129,0.25)" stroke-width="1" fill="none">
+                <circle cx="200" cy="85" r="20"/><circle cx="200" cy="85" r="40"/><circle cx="200" cy="85" r="60"/><circle cx="200" cy="85" r="78"/>
+              </g>
+              <!-- cluster blobs -->
+              <g>
+                <circle cx="140" cy="55" r="14" fill="#22D3EE" fill-opacity="0.25" stroke="#22D3EE" stroke-width="1"/>
+                <circle cx="260" cy="45" r="16" fill="#8B5CF6" fill-opacity="0.25" stroke="#8B5CF6" stroke-width="1"/>
+                <circle cx="270" cy="120" r="14" fill="#F59E0B" fill-opacity="0.25" stroke="#F59E0B" stroke-width="1"/>
+                <circle cx="135" cy="125" r="12" fill="#EC4899" fill-opacity="0.25" stroke="#EC4899" stroke-width="1"/>
+                <circle cx="200" cy="85" r="10" fill="#10B981" fill-opacity="0.3" stroke="#10B981" stroke-width="1.5"/>
+              </g>
+              <g fill="#22D3EE">
+                <circle cx="135" cy="50" r="2"/><circle cx="145" cy="58" r="2"/><circle cx="140" cy="62" r="2"/>
+              </g>
+              <g fill="#8B5CF6">
+                <circle cx="255" cy="40" r="2"/><circle cx="262" cy="45" r="2"/><circle cx="265" cy="52" r="2"/>
+              </g>
+              <g fill="#F59E0B">
+                <circle cx="268" cy="115" r="2"/><circle cx="272" cy="122" r="2"/><circle cx="275" cy="128" r="2"/>
+              </g>
+              <text x="200" y="160" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="rgba(16,185,129,0.8)">5 segments · clusters K-means</text>
+            </svg>
+          </div>
+        </div>
+        <div class="cell__body">
+          <div class="cell__cat">Data Marketing · Segmentation</div>
+          <h3 data-en="Segmentation &amp; product recommendation">Segmentation &amp; recommandation produit</h3>
+          <p class="cell__desc" data-en="Leveraging customer data for segmentation, marketing targeting and product recommendation (Equalia Marketing team).">Exploitation des données clients pour la segmentation, le ciblage marketing et la recommandation produit (pôle Marketing Equalia).</p>
+          <div class="cell__tags">
+            <span class="tag-chip">Python</span><span class="tag-chip">Pandas</span>
+            <span class="tag-chip">Scikit-learn</span><span class="tag-chip">SQL</span>
+          </div>
+          <div class="cell__result">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-en="Sharper marketing targeting &amp; actionable recommendations">Ciblage marketing affiné &amp; recommandations actionnables</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== STACK ===== -->
+<section id="stack">
+  <span class="section-watermark">05</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="05 · Skills &amp; tools">05 · Compétences &amp; outils</div>
+      <h2 data-en="The stack used in production.">La stack utilisée en production.</h2>
+      <p data-en="Skills grouped by category, all of them used on live missions, on my work-study, or during my Master's.">Compétences regroupées par catégorie, toutes mobilisées en mission, en alternance ou en cursus Master 2.</p>
+    </div>
+
+    <div class="stack-grid reveal reveal-stagger">
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+            <h3 data-en="Languages (code)">Langages</h3>
+          </div>
+          <span class="stack-card__count">06</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip">Python</span><span class="tag-chip">SQL</span>
+          <span class="tag-chip">R</span><span class="tag-chip">DAX</span>
+          <span class="tag-chip">VBA</span><span class="tag-chip">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="7" y1="6" x2="10" y2="10"/><line x1="17" y1="6" x2="14" y2="10"/><line x1="7" y1="18" x2="10" y2="14"/><line x1="17" y1="18" x2="14" y2="14"/></svg></span>
+            <h3 data-en="AI &amp; Machine Learning">IA &amp; Machine Learning</h3>
+          </div>
+          <span class="stack-card__count">09</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip">Scikit-learn</span><span class="tag-chip">TensorFlow</span>
+          <span class="tag-chip">Keras</span><span class="tag-chip">PyTorch</span>
+          <span class="tag-chip">Pandas</span><span class="tag-chip">NumPy</span>
+          <span class="tag-chip">Computer Vision</span><span class="tag-chip">NLP</span>
+          <span class="tag-chip">LLM</span>
+        </div>
+      </div>
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+            <h3 data-en="BI &amp; Visualization">BI &amp; Visualisation</h3>
+          </div>
+          <span class="stack-card__count">06</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip">Power BI</span><span class="tag-chip">Tableau</span>
+          <span class="tag-chip">Looker</span><span class="tag-chip" data-en="Advanced Excel">Excel avancé</span>
+          <span class="tag-chip">TCD</span><span class="tag-chip">Power Query</span>
+        </div>
+      </div>
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></span>
+            <h3 data-en="Cloud &amp; Databases">Cloud &amp; Bases</h3>
+          </div>
+          <span class="stack-card__count">07</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip">GCP</span><span class="tag-chip">BigQuery</span>
+          <span class="tag-chip">Azure Data Factory</span><span class="tag-chip">MongoDB</span>
+          <span class="tag-chip">Oracle</span><span class="tag-chip">MySQL</span>
+          <span class="tag-chip">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="1.05" y1="12" x2="7" y2="12"/><line x1="17.01" y1="12" x2="22.96" y2="12"/></svg></span>
+            <h3 data-en="Methods &amp; Tools">Méthodes &amp; Outils</h3>
+          </div>
+          <span class="stack-card__count">06</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip">Git / GitHub</span><span class="tag-chip">Jupyter</span>
+          <span class="tag-chip">Agile</span><span class="tag-chip">ITIL 4</span>
+          <span class="tag-chip">RGPD / CNIL</span><span class="tag-chip" data-en="Project management">Gestion de projet</span>
+        </div>
+      </div>
+
+      <div class="stack-card glow-card">
+        <div class="stack-card__head">
+          <div class="stack-card__left">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <h3 data-en="Languages">Langues</h3>
+          </div>
+          <span class="stack-card__count">02</span>
+        </div>
+        <div class="stack-tags">
+          <span class="tag-chip" data-en="French · native">Français · natif</span><span class="tag-chip" data-en="English · fluent">Anglais · bilingue</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMATION ===== -->
+<section id="formation">
+  <span class="section-watermark">06</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="06 · Education">06 · Formation</div>
+      <h2 data-en="An academic path specialised in Data &amp; AI.">Un parcours académique spécialisé Data &amp; IA.</h2>
+      <p data-en="From a Bachelor's in AI &amp; Big Data to a Master's in Data &amp; AI Project Leadership, with a detour through GDPR / DPO compliance.">Du Bachelor IA &amp; Big Data au Master 2 Chef de Projet Data &amp; IA, avec un passage par la conformité RGPD / DPO.</p>
+    </div>
+
+    <div class="edu-grid reveal reveal-stagger">
+      <div class="edu-card glow-card">
+        <div class="edu-card__head">
+          <h3 data-en="Master's (2nd yr) · Data &amp; AI Project Lead">Master 2 · Chef de Projet Data &amp; IA</h3>
+          <span class="edu-card__date" data-en="Sept. 2025 - Aug. 2026">Sept. 2025 - Août 2026</span>
+        </div>
+        <div class="edu-card__school">NEXA Digital School</div>
+        <div class="edu-card__loc">Paris, France</div>
+        <p class="edu-card__topics" data-en="Advanced Machine Learning · Generative AI &amp; LLMs · Cloud (GCP / Azure) · Data Project Management · Data Engineering.">Machine Learning avancé · IA générative &amp; LLM · Cloud (GCP / Azure) · Gestion de projet Data · Data Engineering.</p>
+      </div>
+
+      <div class="edu-card glow-card">
+        <div class="edu-card__head">
+          <h3 data-en="Master's (1st yr) · Data &amp; AI Project Lead">Master 1 · Chef de Projet Data &amp; IA</h3>
+          <span class="edu-card__date">2024 - 2025</span>
+        </div>
+        <div class="edu-card__school">IA School</div>
+        <div class="edu-card__loc">Paris, France</div>
+        <p class="edu-card__topics" data-en="AI fundamentals · Data Science · Data Visualization · Data project delivery.">Fondamentaux IA · Data Science · Data Visualization · Conduite de projets Data.</p>
+      </div>
+
+      <div class="edu-card glow-card">
+        <div class="edu-card__head">
+          <h3 data-en="Bachelor's · Data Protection Officer">Bachelor · Responsable Protection des Données</h3>
+          <span class="edu-card__date">2022 - 2023</span>
+        </div>
+        <div class="edu-card__school">Ascencia Business School</div>
+        <div class="edu-card__loc">Paris, France</div>
+        <p class="edu-card__topics" data-en="GDPR · Data governance · CNIL compliance · Information security.">RGPD · Gouvernance des données · Conformité CNIL · Sécurité de l'information.</p>
+      </div>
+
+      <div class="edu-card glow-card">
+        <div class="edu-card__head">
+          <h3 data-en="Bachelor's · Artificial Intelligence &amp; Big Data">Bachelor · Intelligence Artificielle &amp; Big Data</h3>
+          <span class="edu-card__date">2022 - 2023</span>
+        </div>
+        <div class="edu-card__school">Keyce Informatique &amp; IA</div>
+        <div class="edu-card__loc" data-en="Douala, Cameroon">Douala, Cameroun</div>
+        <p class="edu-card__topics" data-en="AI · Machine Learning · Big Data · Programming · Databases.">IA · Machine Learning · Big Data · Programmation · Bases de données.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFS & LANGUES ===== -->
+<section id="certifications">
+  <span class="section-watermark">07</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-en="07 · Certifications &amp; languages">07 · Certifications &amp; langues</div>
+      <h2 data-en="Certified skills and languages spoken.">Compétences certifiées et langues maîtrisées.</h2>
+    </div>
+
+    <div class="dual-grid">
+      <div class="panel glow-card reveal">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          Certifications
+        </h3>
+        <div class="cert-list">
+          <span class="cert-pill">Automated ML · Google &amp; Apple</span>
+          <span class="cert-pill">Google Cloud Platform (GCP)</span>
+          <span class="cert-pill">ITIL 4 Foundation</span>
+          <span class="cert-pill" data-en="CNIL · Data Protection">CNIL · Protection des données</span>
+          <span class="cert-pill">Google Analytics</span>
+          <span class="cert-pill">Excel Data Analysis</span>
+          <span class="cert-pill" data-en="Python Certificate (Cursa)">Certificat Python (Cursa)</span>
+          <span class="cert-pill">Lead Generation &amp; Business Dev.</span>
+          <span class="cert-pill" data-en="First Aid Certificate (PSC1)">Premiers Secours Civiques (PSC1)</span>
+          <span class="cert-pill">Lead Implementer (ISO 27001)</span>
+        </div>
+      </div>
+
+      <div class="panel glow-card reveal">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>
+          <span data-en="Languages">Langues</span>
+        </h3>
+        <div class="lang-list">
+          <div class="lang-row">
+            <span class="lang-row__name"><span class="flag">FR</span><span data-en="French">Français</span></span>
+            <span class="lang-row__level" data-en="Native">Langue maternelle</span>
+          </div>
+          <div class="lang-row">
+            <span class="lang-row__name"><span class="flag">EN</span><span data-en="English">Anglais</span></span>
+            <span class="lang-row__level" data-en="Fluent">Bilingue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <span class="section-watermark">08</span>
+  <div class="wrap">
+    <div class="contact__inner reveal">
+      <div class="eyebrow" style="justify-content:center" data-en="08 · Contact">08 · Contact</div>
+      <h2 data-en="Let's build something useful,<br/>serious and lasting.">Construisons une collaboration utile,<br/>sérieuse et durable.</h2>
+      <p class="contact__lede" data-en="Available immediately for a role as a Data Analyst, Data Scientist, AI Engineer or Data Project Lead. Nationwide mobility, happy to talk in French or English.">
+        Disponible immédiatement sur des postes de Data Analyst, Data Scientist, Ingénieur IA ou Chef de Projet Data. Mobilité nationale, ouvert à un échange en français comme en anglais.
+      </p>
+
+      <div class="contact__info">
+        <a href="mailto:handfritz16@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          handfritz16@gmail.com
+        </a>
+        <a href="tel:+33759836590">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +33 7 59 83 65 90
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-en="Île-de-France, France · Nationwide mobility">Île-de-France, France · Mobilité nationale</span>
+        </span>
+        <a href="https://linkedin.com/in/stephanfritzhand" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/stephanfritzhand
+        </a>
+        <a href="https://github.com/Hafriste" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          github.com/Hafriste
+        </a>
+      </div>
+
+      <div class="contact__cta">
+        <a href="mailto:handfritz16@gmail.com" class="btn btn-primary" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span data-en="Send an email">Envoyer un e-mail</span>
+        </a>
+        <a href="./Hand fritz_stephan_CV.pdf" class="btn btn-ghost" data-magnetic download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-en="Download résumé">Télécharger le CV</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span data-en="© 2026 Stephan Fritz Hand · Data Analyst &amp; Data / AI Project Lead">© 2026 Stephan Fritz Hand · Data Analyst &amp; Chef de Projet Data / IA</span>
+    <div class="footer-socials">
+      <a href="mailto:handfritz16@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/stephanfritzhand" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/Hafriste" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if(hasFinePointer){ document.body.classList.add('has-cursor'); }
+
+  // ===== Reveal =====
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }) : null;
+
+  document.querySelectorAll('.reveal').forEach(function(el){
+    if(io){ io.observe(el); } else { el.classList.add('in'); }
+  });
+
+  // ===== Nav scrolled + progress + active link =====
+  var nav = document.getElementById('nav');
+  var navLinks = document.querySelectorAll('.nav__links a');
+  var sections = ['profil','expertise','experience','projets','stack','formation','contact']
+    .map(function(id){ return document.getElementById(id); }).filter(Boolean);
+
+  function onScroll(){
+    var sy = window.scrollY;
+    if(sy > 24){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    var doc = document.documentElement;
+    var max = (doc.scrollHeight - window.innerHeight) || 1;
+    var pct = Math.min(100, Math.max(0, (sy / max) * 100));
+    var bar = document.getElementById('progressBar');
+    if(bar){ bar.style.width = pct + '%'; }
+    var current = null;
+    var trigger = sy + window.innerHeight * 0.35;
+    sections.forEach(function(s){ if(s.offsetTop <= trigger){ current = s.id; } });
+    navLinks.forEach(function(a){
+      var href = a.getAttribute('href') || '';
+      if(href === '#' + current){ a.classList.add('active'); } else { a.classList.remove('active'); }
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ===== Mobile nav =====
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // ===== Theme toggle =====
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e){}
+  if(saved === 'light' || saved === 'dark'){ root.setAttribute('data-theme', saved); }
+  var themeBtn = document.getElementById('themeToggle');
+  var themeIcon = document.getElementById('themeIcon');
+  function renderIcon(){
+    var t = root.getAttribute('data-theme');
+    if(t === 'light'){
+      themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    } else {
+      themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
+  }
+  renderIcon();
+  themeBtn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', current);
+    try { localStorage.setItem('theme', current); } catch(e){}
+    renderIcon();
+  });
+
+  // ===== Language switch (FR / EN) =====
+  var langButtons = [
+    document.getElementById('langFr'), document.getElementById('langEn'),
+    document.getElementById('langFrMobile'), document.getElementById('langEnMobile')
+  ].filter(Boolean);
+  var currentLang = 'fr';
+  try { currentLang = localStorage.getItem('lang') || 'fr'; } catch(e){}
+
+  function applyLang(lang){
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(!el.hasAttribute('data-fr')){ el.setAttribute('data-fr', el.innerHTML); }
+      el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+    });
+    document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'fr');
+    langButtons.forEach(function(btn){
+      var isFr = btn.id.indexOf('Fr') !== -1;
+      var active = (isFr && lang === 'fr') || (!isFr && lang === 'en');
+      btn.setAttribute('aria-current', active ? 'true' : 'false');
+    });
+    if(roleEl){ rIdx = 0; roleEl.textContent = (lang === 'en' ? rolesEn : rolesFr)[0]; }
+    try { localStorage.setItem('lang', lang); } catch(e){}
+    currentLang = lang;
+  }
+  langButtons.forEach(function(btn){
+    var target = btn.id.indexOf('Fr') !== -1 ? 'fr' : 'en';
+    btn.addEventListener('click', function(){ applyLang(target); });
+  });
+
+  // ===== Spotlight + glow-card tracking =====
+  var spot = document.getElementById('spotlight');
+  var glowCards = document.querySelectorAll('.glow-card');
+  if(hasFinePointer && !reduceMotion){
+    var raf = null, x = 0, y = 0;
+    document.addEventListener('mousemove', function(e){
+      x = e.clientX; y = e.clientY;
+      if(!raf){
+        raf = requestAnimationFrame(function(){
+          spot.style.left = x + 'px';
+          spot.style.top = y + 'px';
+          raf = null;
+        });
+      }
+    });
+    glowCards.forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var mx = ((e.clientX - r.left) / r.width) * 100;
+        var my = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty('--mx', mx + '%');
+        card.style.setProperty('--my', my + '%');
+      });
+    });
+  } else {
+    spot.style.display = 'none';
+  }
+
+  // ===== Magnetic buttons =====
+  if(hasFinePointer && !reduceMotion){
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width/2)) * 0.18;
+        var dy = (e.clientY - (r.top + r.height/2)) * 0.18;
+        btn.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+  }
+
+  // ===== Smooth scroll =====
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href');
+      if(href.length > 1 && document.querySelector(href)){
+        e.preventDefault();
+        document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ===== Role rotator =====
+  var rolesFr = ['Data Analyst', 'Data Scientist', 'Ingénieur IA', 'Chef de Projet Data'];
+  var rolesEn = ['Data Analyst', 'Data Scientist', 'AI Engineer', 'Data Project Lead'];
+  var roleEl = document.getElementById('roleFlip');
+  var rIdx = 0;
+  if(roleEl && !reduceMotion){
+    setInterval(function(){
+      var list = currentLang === 'en' ? rolesEn : rolesFr;
+      rIdx = (rIdx + 1) % list.length;
+      roleEl.style.opacity = '0';
+      roleEl.style.transform = 'translateY(-6px)';
+      setTimeout(function(){
+        roleEl.textContent = list[rIdx];
+        roleEl.style.opacity = '1';
+        roleEl.style.transform = 'translateY(0)';
+      }, 280);
+    }, 2400);
+  }
+
+  // Apply saved/default language now that role lists exist
+  applyLang(currentLang);
+
+  // ===== Animate stack bars =====
+  var barsAnimated = false;
+  function animateBars(){
+    if(barsAnimated) return;
+    barsAnimated = true;
+    document.querySelectorAll('.bar-row__fill').forEach(function(b){
+      var w = b.getAttribute('data-w') || '0';
+      setTimeout(function(){ b.style.width = w + '%'; }, 120);
+    });
+  }
+  // Animate donut segments
+  var donutAnimated = false;
+  function animateDonut(){
+    if(donutAnimated) return;
+    donutAnimated = true;
+    var s1 = document.getElementById('seg1');
+    var s2 = document.getElementById('seg2');
+    var s3 = document.getElementById('seg3');
+    // values
+    var v1 = 45, v2 = 35, v3 = 20;
+    // dasharrays
+    setTimeout(function(){
+      if(s1){ s1.setAttribute('stroke-dasharray', v1 + ' ' + (100 - v1)); s1.setAttribute('stroke-dashoffset', '25'); }
+      if(s2){ s2.setAttribute('stroke-dasharray', v2 + ' ' + (100 - v2)); s2.setAttribute('stroke-dashoffset', String(25 - v1)); }
+      if(s3){ s3.setAttribute('stroke-dasharray', v3 + ' ' + (100 - v3)); s3.setAttribute('stroke-dashoffset', String(25 - v1 - v2)); }
+    }, 200);
+  }
+
+  var dashIo = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        animateBars();
+        animateDonut();
+      }
+    });
+  }, { threshold: 0.3 }) : null;
+  var dashEl = document.querySelector('.dashboard');
+  if(dashIo && dashEl){ dashIo.observe(dashEl); } else { animateBars(); animateDonut(); }
+
+})();
+</script>
+
+</body>
+</html>
